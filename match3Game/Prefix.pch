@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'match3Game' target in the 'match3Game' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
+#endif
