@@ -10,6 +10,10 @@
 
 #include "Constants.h"
 
+
+using namespace cocos2d;
+using namespace std;
+
 Field::~Field()
 {
     
@@ -20,14 +24,14 @@ Field::Field()
     _isSwapping = false;
     _isDropping = false;
     
-    _chipSelection = NULL;
-    _firstChip = NULL;
-    _game = NULL;
+    _chipSelection = nullptr;
+    _firstChip = nullptr;
+    _game = nullptr;
     
     this->removeAllChildren();
     
     _chipSelection = CCSprite::create("selection.png");
-    _chipSelection->setVisible(true);
+    _chipSelection->setVisible(false);
     
     this->addChild(_chipSelection, 1);
     this->setPosition(kFieldBasePoint);
@@ -35,6 +39,8 @@ Field::Field()
     _chips.resize(kFieldWidth * kFieldHeight);
     
     setUpGrid();
+    
+    this->scheduleUpdate();
 }
 
 Field* Field::create()
@@ -56,6 +62,16 @@ void Field::setUpGrid()
             }
         }
         
+        if(!getMatchesIfAny().empty()) {
+            clear();
+            continue;
+        }
+        
+        if(!isItPossibleToPlay()) {
+            clear();
+            continue;
+        }
+        
         break;
     }
 }
@@ -75,6 +91,30 @@ Chip* Field::addChip(int col, int row)
     
     return chip;
     
+}
+
+void Field::clear(bool bruteKill)
+{
+    for(Chip *chip: _chips)
+    {
+        if(bruteKill)
+        {
+            this->removeChild(chip, bruteKill);
+        }
+        else
+        {
+            chip->die();
+        }
+    }
+    
+    _chips.clear();
+    _chips.resize(kFieldWidth * kFieldHeight);
+}
+
+void Field::shuffle()
+{
+    clear(false);
+    setUpGrid();
 }
 
 Chip* Field::getChipAt(int col, int row)
@@ -99,19 +139,23 @@ bool Field::isItPossibleToPlay()
     {
         for(int col = 0; col < kFieldWidth; ++col)
         {
-            if(doesChipPatternMatch(col, row, {{1, 0}}, {{-2, 0}, {-1, -1}, {-1, 1}, {2, -1}, {2, 1}, {3, 0}})) {
+            if(doesChipPatternMatch(col, row, {{1, 0}}, {{-2, 0}, {-1, -1}, {-1, 1}, {2, -1}, {2, 1}, {3, 0}}))
+            {
                 return true;
             }
             
-            if(doesChipPatternMatch(col, row, {{2, 0}}, {{1, -1}, {1, 1}})) {
+            if(doesChipPatternMatch(col, row, {{2, 0}}, {{1, -1}, {1, 1}}))
+            {
                 return true;
             }
             
-            if(doesChipPatternMatch(col, row, {{0, 1}}, {{0, -2}, {-1, -1}, {1, -1}, {-1, 2}, {1, 2}, {0, 3}})) {
+            if(doesChipPatternMatch(col, row, {{0, 1}}, {{0, -2}, {-1, -1}, {1, -1}, {-1, 2}, {1, 2}, {0, 3}}))
+            {
                 return true;
             }
             
-            if(doesChipPatternMatch(col, row, {{0, 2}}, {{-1, 1}, {1, 1}})) {
+            if(doesChipPatternMatch(col, row, {{0, 2}}, {{-1, 1}, {1, 1}}))
+            {
                 return true;
             }
         }
@@ -135,7 +179,7 @@ bool Field::doesChipPatternMatch(int col, int row, Vec2Collection mustHave, Vec2
     int numOfMustHave = static_cast<int>(mustHave.size());
     Chip *currentChip = getChipAt(col, row);
     
-    if(currentChip == NULL)
+    if(currentChip == nullptr)
     {
         return false;
     }
@@ -159,4 +203,328 @@ bool Field::doesChipPatternMatch(int col, int row, Vec2Collection mustHave, Vec2
     }
     
     return false;
+}
+
+ChipMatrix Field::getMatchesIfAny()
+{
+    ChipMatrix resultingMatch;
+    
+    auto checkRows = [&](int row, int col) -> ChipVector {
+        Chip *chipToCheck = getChipAt(col, row);
+        
+        ChipVector result;
+        result.push_back(chipToCheck);
+        
+        if(chipToCheck == nullptr) {
+            return result;
+        }
+        
+        //todo: add nullptr-chip check
+        for(int i = 1; col + i < kFieldWidth; ++i)
+        {
+            Chip *currentChip = getChipAt(col + i, row);
+            
+            if(currentChip && chipToCheck->getType() == currentChip->getType()) {
+                result.push_back(currentChip);
+            } else {
+                return result;
+            }
+        }
+        
+        return result;
+    };
+    
+    auto checkColumns = [&](int row, int col) -> ChipVector {
+        Chip *chipToCheck = getChipAt(col, row);
+        
+        ChipVector result;
+        result.push_back(chipToCheck);
+        
+        if(chipToCheck == nullptr)
+        {
+            return result;
+        }
+        
+        for(int i = 1; row + i < kFieldHeight; ++i)
+        {
+            Chip *currentChip = getChipAt(col, row + i);
+            
+            if(currentChip && chipToCheck->getType() == currentChip->getType())
+            {
+                result.push_back(currentChip);
+            }
+            else
+            {
+                return result;
+            }
+        }
+        
+        return result;
+    };
+    
+    for(int row = 0; row < kFieldHeight; ++row)
+    {
+        //assume our match is invalid in case it consists of less than 3 elements
+        //we should skip 2 last rows since they can not
+        //make a match of more than 2 elements
+        for(int col = 0; col < kFieldWidth - 2; ++col)
+        {
+            auto match = checkRows(row, col);
+            if(match.size() > 2)
+            {
+                resultingMatch.push_back(match);
+                //skip this match
+                col += (match.size() - 1);
+            }
+        }
+    }
+    
+    for(int col = 0; col < kFieldWidth; ++col)
+    {
+        for(int row = 0; row < kFieldHeight - 2; ++row)
+        {
+            auto match = checkColumns(row, col);
+            if(match.size() > 2)
+            {
+                resultingMatch.push_back(match);
+                row += (match.size() - 1);
+            }
+        }
+    }
+    
+    return resultingMatch;
+}
+
+void Field::removeMatchesIfAny()
+{
+    auto matches = getMatchesIfAny();
+    
+    int numOfMatches = static_cast<int>(matches.size());
+    
+    for(int i = 0; i < numOfMatches; ++i) {
+        int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
+        for(int j = 0; j < matches[i].size(); ++j) {
+            
+            Chip *chip = matches[i][j];
+            auto chipIt = find(_chips.begin(), _chips.end(), chip);
+            
+            if(chipIt != _chips.end()) {
+                //show scores label and apply fade int/scale effect to it
+                //these points should be applied once only by the way
+                //_game->applyPoints(points);
+                
+                _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
+                
+                displaceChips(chip);
+                //would be nice to add this chip to a special list and
+                //apply some basic scale/ fade out effect maybe
+                //and use removeChild(chip, false) instead
+                //this->removeChild(chip);
+                chip->die();
+                
+                //SoundManager::mngr()->playEffect("chipBreak.wav");
+            }
+        }
+    }
+    
+    addNewChips();
+    
+    if(matches.empty()) {
+        if(!isItPossibleToPlay()) {
+            //onGameOver();
+            shuffle();
+        }
+    }
+}
+
+void Field::displaceChips(Chip *base)
+{
+    int baseCol = base->getGridCoords().x;
+    int baseRow = base->getGridCoords().y;
+    
+    for(int row = baseRow - 1; row >= 0; row--)
+    {
+        if(getChipAt(baseCol, row) != nullptr)
+        {
+            Chip *currentChip = _chips[row * kFieldWidth + baseCol];
+            
+            currentChip->setGridCoords(currentChip->getGridCoords().x, currentChip->getGridCoords().y + 1);
+            _chips[(row + 1) * kFieldWidth + baseCol] = currentChip;
+            _chips[row * kFieldWidth + baseCol] = nullptr;
+        }
+    }
+}
+
+void Field::addNewChips() {
+    for(int col = 0; col < kFieldWidth; ++col) {
+        int numOfMissingChips = 0;
+        for(int row = kFieldHeight - 1; row >= 0; row--) {
+            if(getChipAt(col, row) == nullptr) {
+                
+                Chip *newChip = addChip(col, row);
+                //row * (kChipSpacing + kChipHeight) + kChipHeight / 2
+                //->old newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
+                
+                newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
+                
+                CCLOG("newChip.position: %f, %f", newChip->getPosition().x, newChip->getPosition().y);
+                
+                _isDropping = true;
+            }
+        }
+    }
+}
+
+void Field::swap(Chip *a, Chip *b) {
+    auto swapper = [&](Chip *_1, Chip *_2) {
+        CCPoint tmpCoords = _1->getGridCoords();
+        
+        _1->setGridCoords(_2->getGridCoords());
+        _2->setGridCoords(tmpCoords);
+        
+        _chips[_1->getGridCoords().y * kFieldWidth + _1->getGridCoords().x] = _1;
+        _chips[_2->getGridCoords().y * kFieldWidth + _2->getGridCoords().x] = _2;
+    };
+    
+    swapper(a, b);
+    
+    if(getMatchesIfAny().empty())
+    {
+        //swap(b, a) ?
+        swapper(a, b);
+    }
+    else
+    {
+        _isSwapping = true;
+    }
+}
+
+void Field::touchOnPos(int x, int y)
+{
+    Chip *chip = getChipAtXandY(x, y);
+    
+    if(chip == nullptr)
+    {
+        return;
+    }
+    
+    //SoundManager::mngr()->playEffect("btnClick.wav");
+    
+    //this is the first time we select a chip
+    if(_firstChip == nullptr)
+    {
+        _chipSelection->setVisible(true);
+        _chipSelection->setPosition(chip->getPosition());
+        _firstChip = chip;
+    }
+    else if(_firstChip == chip)
+    {
+        //deselect a previously selected chip
+        _chipSelection->setVisible(false);
+        _firstChip = nullptr;
+    }
+    else
+    {
+        //we selected another chip: it is possible it's a neighbour chip
+        _chipSelection->setVisible(false);
+        
+        CCPoint firstCoords = _firstChip->getGridCoords();
+        CCPoint secondCoords = chip->getGridCoords();
+        //check if this is the same row and neighbour column
+        if(firstCoords.y == secondCoords.y && fabs(firstCoords.x - secondCoords.x) == 1)
+        {
+            swap(_firstChip, chip);
+            _firstChip = nullptr;
+        }
+        else if(firstCoords.x == secondCoords.x && fabs(firstCoords.y - secondCoords.y) == 1)
+        {
+            swap(_firstChip, chip);
+            _firstChip = nullptr;
+        }
+        else
+        {
+            //this is a distant chip, so select it and deselect the previous one
+            _firstChip = chip;
+            _chipSelection->setPosition(chip->getPosition());
+            _chipSelection->setVisible(true);
+        }
+    }
+
+}
+
+void Field::update(float dt)
+{
+    moveChips(dt);
+}
+
+void Field::moveChips(float dt)
+{
+    //dt should be kept in mind!
+    bool moved = false;
+    
+    for(int i = 0; i < kFieldHeight; ++i) {
+        for(int j = 0; j < kFieldWidth; ++j) {
+            
+            Chip *chip = _chips[i * kFieldWidth + j];
+            if(chip != nullptr) {
+                
+                CCPoint currentPos = chip->getPosition();
+                CCPoint requiredPos = ccp(chip->getGridCoords().x * (kChipSpacing + kChipWidth) + kChipWidth / 2,
+                                         chip->getGridCoords().y * (kChipSpacing + kChipHeight) + kChipHeight / 2);
+                
+                
+                
+                //move to the bottom
+                if(currentPos.y < requiredPos.y)
+                {
+                    //use gravity instead of constant speed
+                    CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y + 750 * dt, currentPos.y, requiredPos.y));
+                    
+                    //CCLOG("currentPos: %f, %f requiredPos: %f, %f", currentPos.x, currentPos.y, requiredPos.x, requiredPos.y);
+                    
+                    chip->setPosition(pos); //apply speed here
+                    
+                    moved = true;
+                } else if(currentPos.y > requiredPos.y)
+                {
+                    //move to the top
+                    //use gravity instead of constant speed
+                    CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y - 350 * dt, requiredPos.y, currentPos.y));
+                    
+                    chip->setPosition(pos); //apply speed here
+                    
+                    moved = true;
+                } else if(currentPos.x < requiredPos.x)
+                {
+                    //move to the right
+                    //use gravity instead of constant speed
+                    CCPoint pos = ccp(cut(chip->getPosition().x + 350 * dt, currentPos.x, requiredPos.x), chip->getPosition().y);
+                    
+                    chip->setPosition(pos); //apply speed here
+                    
+                    moved = true;
+                } else if(currentPos.x > requiredPos.x)
+                {
+                    //move to the left
+                    //use gravity instead of constant speed
+                    CCPoint pos = ccp(cut(chip->getPosition().x - 350 * dt, requiredPos.x, currentPos.x), chip->getPosition().y);
+                    
+                    chip->setPosition(pos); //apply speed here
+                    
+                    moved = true;
+                }
+            }
+        }
+    }
+    
+    if(_isDropping && !moved)
+    {
+        _isDropping = false;
+        removeMatchesIfAny();
+    }
+    else if(_isSwapping && !moved)
+    {
+        _isSwapping = false;
+        removeMatchesIfAny();
+    }
 }

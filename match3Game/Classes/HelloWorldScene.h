@@ -5,6 +5,8 @@
 
 using namespace cocos2d;
 
+class Field;
+
 //class HelloWorld : public cocos2d::CCLayer
 class GameScene : public cocos2d::CCLayer
 {
@@ -20,6 +22,18 @@ public:
     
 private:
     CCSprite *_back;
+    
+    Field *_field;
+    
+    bool _gameOver;
+    
+public:
+    
+    void restart();
+    void gameOver();
+    
+    void registerWithTouchDispatcher();
+    bool ccTouchBegan(CCTouch *touch, CCEvent *event);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

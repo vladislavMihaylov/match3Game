@@ -23,7 +23,7 @@ typedef vector<ChipVector> ChipMatrix;
 
 class GameScene;
 
-class Field: public cocos2d::CCNode
+class Field: public cocos2d::CCLayer
 {
 private:
     ChipVector _chips;
@@ -47,12 +47,26 @@ public:
     Chip* getChipAt(int col, int row);
     Chip* getChipAtXandY(int x, int y);
     
+    void update(float dt);
+    void moveChips(float dt);
+    
+    void clear(bool bruteKill = true);
+    void shuffle();
+    
+    void swap(Chip *a, Chip *b);
     
     //void visit();
     //void render();
+    
+    void touchOnPos(int x, int y);
 private:
     
+    ChipMatrix getMatchesIfAny();
     bool isItPossibleToPlay();
+    
+    void removeMatchesIfAny();
+    void displaceChips(Chip *base);
+    void addNewChips();
     
     bool doesChipPatternMatch(int col, int row, Vec2Collection mustHave, Vec2Collection needOne);
     

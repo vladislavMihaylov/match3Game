@@ -32,14 +32,39 @@ bool GameScene::init()
     {
         return false;
     }
+    
+    this->setTouchEnabled(true);
 
     _back = CCSprite::create("back.png");
     _back->setPosition(ccp(kScreenWidth / 2, kScreenHeight / 2));
     this->addChild(_back);
         
-    Field *field = Field::create();
-    this->addChild(field);
+    _field = Field::create();
+    this->addChild(_field);
     
     return true;
 }
 
+void GameScene::registerWithTouchDispatcher()
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+}
+
+bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
+{
+    CCPoint touchLocation = touch->getLocationInView();
+    touchLocation = CCDirector::sharedDirector()->convertToGL(touchLocation);
+    touchLocation = this->convertToNodeSpace(touchLocation);
+    
+    if(!_gameOver)
+    {
+    
+    if((touchLocation.x > kFieldBasePoint.x && touchLocation.x < (kFieldBasePoint.x + kFieldAreaWidth)) &&
+       touchLocation.y > kFieldBasePoint.y && touchLocation.y < (kFieldBasePoint.y + kFieldAreaHeight))
+    {
+        _field->touchOnPos(touchLocation.x, touchLocation.y);
+    }
+    
+    }
+    return true;
+}

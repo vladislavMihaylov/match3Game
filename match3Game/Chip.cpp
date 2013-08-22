@@ -22,6 +22,8 @@ Chip::Chip(ChipType type)
     
     _state = CS_Init;
     setType(type);
+    
+    this->scheduleUpdate();
 }
 
 Chip::~Chip()
@@ -93,13 +95,41 @@ void Chip::die()
     _state = CS_Dying;
 }
 
-bool Chip::update()
+void Chip::update(float dt)
 {
-    switch (_state)
+    switch(_state) {
+            
+        case CS_Init: {
+            sprite->setScale(sprite->getScale() + 5 * dt);
+            if(sprite->getScale() >= 1.0) {
+                sprite->setScale(1.0);
+                _state = CS_Normal;
+            }
+        } break;
+        case CS_Normal: {
+            
+        } break;
+        case CS_Dying: {
+            
+            setScale(getScale() - 10 * dt);
+            
+            if(getScale() <= 0) {
+                setScale(0);
+                setState(CS_Dead);
+            }
+            
+        } break;
+        case CS_Dead: {
+            this->removeFromParent();
+        } break;
+    }
+    
+    /*witch (_state)
     {
         case CS_Init:
         {
-            sprite->runAction(CCScaleTo::create(0.2, 1));
+            sprite->runAction(CCScaleTo::create(0.3, 1));
+            _state = CS_Normal;
         } break;
             
         case CS_Normal:
@@ -109,7 +139,15 @@ bool Chip::update()
             
         case CS_Dying:
         {
-            sprite->runAction(CCScaleTo::create(0.2, 1));
+            CCAction *scaleAction = CCScaleTo::create(0.05, 0);
+            
+            //CCAction *call = CCCallFunc::create(this, callfunc_selector(Chip::kill()));
+            
+            CCArray *seqArr = CCArray::create(scaleAction,  NULL);
+            
+            sprite->runAction(CCSequence::create(seqArr));
+            
+            //kill();
         } break;
             
         case CS_Dead:
@@ -119,7 +157,10 @@ bool Chip::update()
             
         default:
             break;
-    }
-    
-    return true;
+    }*/
+}
+
+void Chip::kill()
+{
+    setState(CS_Dead);
 }

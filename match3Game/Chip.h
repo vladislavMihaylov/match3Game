@@ -15,7 +15,7 @@
 
 using namespace cocos2d;
 
-class Chip: public cocos2d::CCNode
+class Chip: public cocos2d::CCLayer
 {
 private:
     CCSprite *sprite;
@@ -43,7 +43,9 @@ public:
     
     void die();
     
-    bool update();
+    void update(float dt);
+    
+    void kill();
     
 private:
     void setState(ChipState state);
