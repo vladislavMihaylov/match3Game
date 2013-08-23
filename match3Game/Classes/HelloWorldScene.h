@@ -13,6 +13,8 @@ class GameScene : public cocos2d::CCLayer
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
     virtual bool init();
+    
+    
 
     // there's no 'id' in cpp, so we recommend to return the class instance pointer
     static cocos2d::CCScene* scene();
@@ -27,9 +29,21 @@ private:
     
     bool _gameOver;
     
+    CCLabelTTF *_timeLabel;
+    CCLabelTTF *_scoreLabel;
+    
+    CCMenuItemFont *_restartBtn;
+    
+    int time;
+    int score;
+    
 public:
     
     void restart();
+    
+    void decreaseTime(float ct);
+    void applyPoints(int points);
+    
     void gameOver();
     
     void registerWithTouchDispatcher();

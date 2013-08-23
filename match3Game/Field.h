@@ -40,6 +40,8 @@ public:
     Field();
     ~Field();
     
+    void setGameDelegate(GameScene *game);
+    
     static Field* create();
     void setUpGrid();
     

@@ -9,7 +9,7 @@
 #include "Field.h"
 
 #include "Constants.h"
-
+#include "HelloWorldScene.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -304,6 +304,11 @@ ChipMatrix Field::getMatchesIfAny()
     return resultingMatch;
 }
 
+void Field::setGameDelegate(GameScene *game)
+{
+    _game = game;
+}
+
 void Field::removeMatchesIfAny()
 {
     auto matches = getMatchesIfAny();
@@ -311,7 +316,7 @@ void Field::removeMatchesIfAny()
     int numOfMatches = static_cast<int>(matches.size());
     
     for(int i = 0; i < numOfMatches; ++i) {
-        //int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
+        int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
         for(int j = 0; j < matches[i].size(); ++j) {
             
             Chip *chip = matches[i][j];
@@ -320,7 +325,7 @@ void Field::removeMatchesIfAny()
             if(chipIt != _chips.end()) {
                 //show scores label and apply fade int/scale effect to it
                 //these points should be applied once only by the way
-                //_game->applyPoints(points);
+                _game->applyPoints(points);
                 
                 _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
                 
