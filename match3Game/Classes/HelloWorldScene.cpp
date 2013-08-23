@@ -60,7 +60,7 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     {
     
     if((touchLocation.x > kFieldBasePoint.x && touchLocation.x < (kFieldBasePoint.x + kFieldAreaWidth)) &&
-       touchLocation.y > kFieldBasePoint.y && touchLocation.y < (kFieldBasePoint.y + kFieldAreaHeight))
+       touchLocation.y < kFieldBasePoint.y && touchLocation.y > (kFieldBasePoint.y - kFieldAreaHeight))
     {
         _field->touchOnPos(touchLocation.x, touchLocation.y);
     }

@@ -81,11 +81,14 @@ Chip* Field::addChip(int col, int row)
     Chip *chip = Chip::create(CT_Red);
     
     chip->setGridCoords(col, row);
-    chip->setPosition(ccp(col * (kChipSpacing + kChipWidth) + kChipWidth / 2, row * (kChipSpacing + kChipHeight) + kChipHeight / 2));
-    
+    // -> new
+    chip->setPosition(ccp(col * (kChipSpacing + kChipWidth) + kChipWidth / 2, row * -(kChipSpacing + kChipHeight) - kChipHeight / 2));
+    // -> end были плюсы
     chip->setType(static_cast<ChipType>(rand() % kNumOfChipTypes));
     
     _chips[row * kFieldWidth + col] = chip;
+    
+    chip->updateLabel(col, row);
     
     this->addChild(chip);
     
@@ -124,11 +127,17 @@ Chip* Field::getChipAt(int col, int row)
 
 Chip* Field::getChipAtXandY(int x, int y)
 {
+    CCLOG("begin_x: %i begin_y: %i", x, y);
+    
     x -= kFieldBasePoint.x;
-    y -= kFieldBasePoint.y;
+    y = kFieldBasePoint.y - y;
+    
+    CCLOG("end_x: %i end_y: %i", x, y);
     
     int col = (x + kChipSpacing) / (kChipWidth + kChipSpacing);
     int row = (y + kChipSpacing) / (kChipHeight + kChipSpacing);
+    
+    CCLOG("col: %i row: %i", col, row);
     
     return getChipAt(col, row);
 }
@@ -302,7 +311,7 @@ void Field::removeMatchesIfAny()
     int numOfMatches = static_cast<int>(matches.size());
     
     for(int i = 0; i < numOfMatches; ++i) {
-        int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
+        //int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
         for(int j = 0; j < matches[i].size(); ++j) {
             
             Chip *chip = matches[i][j];
@@ -314,6 +323,8 @@ void Field::removeMatchesIfAny()
                 //_game->applyPoints(points);
                 
                 _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
+                
+                
                 
                 displaceChips(chip);
                 //would be nice to add this chip to a special list and
@@ -349,7 +360,10 @@ void Field::displaceChips(Chip *base)
             Chip *currentChip = _chips[row * kFieldWidth + baseCol];
             
             currentChip->setGridCoords(currentChip->getGridCoords().x, currentChip->getGridCoords().y + 1);
+            
+            // -> newww currentChip->setGridCoords(currentChip->getGridCoords().x, currentChip->getGridCoords().y + 1);
             _chips[(row + 1) * kFieldWidth + baseCol] = currentChip;
+            // -> newww_chips[(row - 1) * kFieldWidth + baseCol] = currentChip;
             _chips[row * kFieldWidth + baseCol] = nullptr;
         }
     }
@@ -363,9 +377,9 @@ void Field::addNewChips() {
                 
                 Chip *newChip = addChip(col, row);
                 //row * (kChipSpacing + kChipHeight) + kChipHeight / 2
-                //->old newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
+                newChip->setPosition(ccp(newChip->getPosition().x, (numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
                 
-                newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
+                // -> newww newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
                 
                 CCLOG("newChip.position: %f, %f", newChip->getPosition().x, newChip->getPosition().y);
                 
@@ -470,17 +484,19 @@ void Field::moveChips(float dt)
                 
                 CCPoint currentPos = chip->getPosition();
                 CCPoint requiredPos = ccp(chip->getGridCoords().x * (kChipSpacing + kChipWidth) + kChipWidth / 2,
-                                         chip->getGridCoords().y * (kChipSpacing + kChipHeight) + kChipHeight / 2);
+                                         chip->getGridCoords().y * -(kChipSpacing + kChipHeight) - kChipHeight / 2);
                 
-                
+                ;
                 
                 //move to the bottom
                 if(currentPos.y < requiredPos.y)
                 {
                     //use gravity instead of constant speed
-                    CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y + 750 * dt, currentPos.y, requiredPos.y));
+                    CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y + kSpeedOfMove * dt, currentPos.y, requiredPos.y));
                     
                     //CCLOG("currentPos: %f, %f requiredPos: %f, %f", currentPos.x, currentPos.y, requiredPos.x, requiredPos.y);
+                    
+                    //chip->setRotation(20);
                     
                     chip->setPosition(pos); //apply speed here
                     
@@ -489,7 +505,7 @@ void Field::moveChips(float dt)
                 {
                     //move to the top
                     //use gravity instead of constant speed
-                    CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y - 350 * dt, requiredPos.y, currentPos.y));
+                    CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y - kSpeedOfMove * dt, requiredPos.y, currentPos.y));
                     
                     chip->setPosition(pos); //apply speed here
                     
@@ -498,7 +514,7 @@ void Field::moveChips(float dt)
                 {
                     //move to the right
                     //use gravity instead of constant speed
-                    CCPoint pos = ccp(cut(chip->getPosition().x + 350 * dt, currentPos.x, requiredPos.x), chip->getPosition().y);
+                    CCPoint pos = ccp(cut(chip->getPosition().x + kSpeedOfMove * dt, currentPos.x, requiredPos.x), chip->getPosition().y);
                     
                     chip->setPosition(pos); //apply speed here
                     
@@ -507,7 +523,7 @@ void Field::moveChips(float dt)
                 {
                     //move to the left
                     //use gravity instead of constant speed
-                    CCPoint pos = ccp(cut(chip->getPosition().x - 350 * dt, requiredPos.x, currentPos.x), chip->getPosition().y);
+                    CCPoint pos = ccp(cut(chip->getPosition().x - kSpeedOfMove * dt, requiredPos.x, currentPos.x), chip->getPosition().y);
                     
                     chip->setPosition(pos); //apply speed here
                     

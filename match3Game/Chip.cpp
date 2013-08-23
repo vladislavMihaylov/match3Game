@@ -23,12 +23,27 @@ Chip::Chip(ChipType type)
     _state = CS_Init;
     setType(type);
     
+    _coords = CCLabelTTF::create("1,1", "Arial", 16);
+    _coords->setColor(ccc3(0, 0, 0));
+    this->addChild(_coords,2);
+    
     this->scheduleUpdate();
 }
 
 Chip::~Chip()
 {
     
+}
+
+void Chip::updateLabel(int x, int y)
+{
+    std::ostringstream oss;
+    oss << x <<"," << y;
+    std::string str = oss.str();
+    
+    const char *string = str.c_str();
+    
+    _coords->setString(string);
 }
 
 Chip* Chip::create(ChipType type)

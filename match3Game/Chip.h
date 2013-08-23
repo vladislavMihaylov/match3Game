@@ -15,7 +15,7 @@
 
 using namespace cocos2d;
 
-class Chip: public cocos2d::CCLayer
+class Chip: public cocos2d::CCNode
 {
 private:
     CCSprite *sprite;
@@ -25,7 +25,11 @@ private:
     
     CCPoint _gridCoords;
     
+    CCLabelTTF *_coords;
+    
 public:
+    
+    void updateLabel(int x, int y);
     
     Chip(ChipType type);
     ~Chip();

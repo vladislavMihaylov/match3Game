@@ -13,7 +13,7 @@
 #define kScreenHeight       768
 
 #define kNumOfChipTypes     5
-#define kFieldBasePoint     ccp(350, 120)
+#define kFieldBasePoint     ccp(350, 720)
 #define kChipSpacing        2
 #define kChipWidth          72
 #define kChipHeight         72
@@ -24,6 +24,8 @@
 #define kFieldHeight        8
 
 #define kGameSessionTime    60
+
+#define kSpeedOfMove        500
 
 #define kFieldAreaWidth (kFieldWidth * kChipWidth + (kFieldWidth - 1) * kChipSpacing)
 #define kFieldAreaHeight (kFieldHeight * kChipHeight + (kFieldHeight - 1) * kChipSpacing)
