@@ -20,7 +20,7 @@ class Chip: public cocos2d::CCNode
 private:
     CCSprite *sprite;
     
-    ChipType _type;
+    ChipColor _type;
     ChipState _state;
     
     CCPoint _gridCoords;
@@ -31,18 +31,18 @@ public:
     
     void updateLabel(int x, int y);
     
-    Chip(ChipType type);
+    Chip(ChipColor type);
     ~Chip();
     
-    static Chip* create(ChipType type);
+    static Chip* create(ChipColor type);
     
-    void setType(ChipType type);
+    void setType(ChipColor type);
     void setGridCoords(int col, int row);
     void setGridCoords(CCPoint coords);
     
     CCPoint getGridCoords();
     
-    ChipType  getType();
+    ChipColor  getType();
     ChipState getState();
     
     void die();

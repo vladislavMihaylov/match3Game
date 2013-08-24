@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5179C5B17C86DC8005155C5 /* md-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5717C86DC8005155C5 /* md-1.mp3 */; };
+		F5179C5C17C86DC8005155C5 /* clock.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5817C86DC8005155C5 /* clock.wav */; };
+		F5179C5D17C86DC8005155C5 /* lvlComplete.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5917C86DC8005155C5 /* lvlComplete.wav */; };
+		F5179C5E17C86DC8005155C5 /* chipBreak.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5A17C86DC8005155C5 /* chipBreak.wav */; };
 		F51971C717C4A15400859CFA /* chips.plist in Resources */ = {isa = PBXBuildFile; fileRef = F51971C517C4A15400859CFA /* chips.plist */; };
 		F51971C817C4A15400859CFA /* chips.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971C617C4A15400859CFA /* chips.png */; };
 		F51971CB17C4A43500859CFA /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F51971C917C4A43500859CFA /* Field.cpp */; };
@@ -294,6 +298,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F5179C5717C86DC8005155C5 /* md-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "md-1.mp3"; sourceTree = "<group>"; };
+		F5179C5817C86DC8005155C5 /* clock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clock.wav; sourceTree = "<group>"; };
+		F5179C5917C86DC8005155C5 /* lvlComplete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lvlComplete.wav; sourceTree = "<group>"; };
+		F5179C5A17C86DC8005155C5 /* chipBreak.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chipBreak.wav; sourceTree = "<group>"; };
 		F51971C517C4A15400859CFA /* chips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chips.plist; sourceTree = "<group>"; };
 		F51971C617C4A15400859CFA /* chips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chips.png; sourceTree = "<group>"; };
 		F51971C917C4A43500859CFA /* Field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Field.cpp; sourceTree = "<group>"; };
@@ -970,6 +978,10 @@
 		F527AC3817C3CA4F00B4A1F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5179C5717C86DC8005155C5 /* md-1.mp3 */,
+				F5179C5817C86DC8005155C5 /* clock.wav */,
+				F5179C5917C86DC8005155C5 /* lvlComplete.wav */,
+				F5179C5A17C86DC8005155C5 /* chipBreak.wav */,
 				F51971D017C4D56800859CFA /* ct_0.png */,
 				F51971D117C4D56800859CFA /* ct_1.png */,
 				F51971D217C4D56800859CFA /* ct_2.png */,
@@ -2214,6 +2226,10 @@
 				F51971D717C4D56800859CFA /* ct_2.png in Resources */,
 				F51971D817C4D56800859CFA /* ct_3.png in Resources */,
 				F51971D917C4D56800859CFA /* ct_4.png in Resources */,
+				F5179C5B17C86DC8005155C5 /* md-1.mp3 in Resources */,
+				F5179C5C17C86DC8005155C5 /* clock.wav in Resources */,
+				F5179C5D17C86DC8005155C5 /* lvlComplete.wav in Resources */,
+				F5179C5E17C86DC8005155C5 /* chipBreak.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

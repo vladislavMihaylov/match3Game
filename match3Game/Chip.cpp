@@ -8,7 +8,7 @@
 
 #include "Chip.h"
 
-Chip::Chip(ChipType type)
+Chip::Chip(ChipColor type)
 {
     
     std::ostringstream oss;
@@ -20,7 +20,7 @@ Chip::Chip(ChipType type)
     sprite = CCSprite::create(name);
     this->addChild(sprite);
     
-    _state = CS_Init;
+    setState(CS_Init);
     setType(type);
     
     _coords = CCLabelTTF::create("1,1", "Arial", 16);
@@ -46,7 +46,7 @@ void Chip::updateLabel(int x, int y)
     //_coords->setString(string);
 }
 
-Chip* Chip::create(ChipType type)
+Chip* Chip::create(ChipColor type)
 {
     Chip *chip = new Chip::Chip(type);
     
@@ -55,7 +55,7 @@ Chip* Chip::create(ChipType type)
 
 // setters
 
-void Chip::setType(ChipType type)
+void Chip::setType(ChipColor type)
 {
     _type = type;
     
@@ -88,7 +88,7 @@ void Chip::setGridCoords(CCPoint coords)
 
 // getters
 
-ChipType Chip::getType()
+ChipColor Chip::getType()
 {
     return _type;
 }
@@ -112,34 +112,8 @@ void Chip::die()
 
 void Chip::update(float dt)
 {
-    switch(_state) {
-            
-        case CS_Init: {
-            sprite->setScale(sprite->getScale() + 5 * dt);
-            if(sprite->getScale() >= 1.0) {
-                sprite->setScale(1.0);
-                _state = CS_Normal;
-            }
-        } break;
-        case CS_Normal: {
-            
-        } break;
-        case CS_Dying: {
-            
-            setScale(getScale() - 10 * dt);
-            
-            if(getScale() <= 0) {
-                setScale(0);
-                setState(CS_Dead);
-            }
-            
-        } break;
-        case CS_Dead: {
-            this->removeFromParent();
-        } break;
-    }
     
-    /*witch (_state)
+    switch (_state)
     {
         case CS_Init:
         {
@@ -156,13 +130,12 @@ void Chip::update(float dt)
         {
             CCAction *scaleAction = CCScaleTo::create(0.05, 0);
             
-            //CCAction *call = CCCallFunc::create(this, callfunc_selector(Chip::kill()));
+            CCAction *call = CCCallFunc::create(this, callfunc_selector(Chip::kill));
             
-            CCArray *seqArr = CCArray::create(scaleAction,  NULL);
+            CCArray *seqArr = CCArray::create(scaleAction, call, NULL);
             
             sprite->runAction(CCSequence::create(seqArr));
             
-            //kill();
         } break;
             
         case CS_Dead:
@@ -172,7 +145,7 @@ void Chip::update(float dt)
             
         default:
             break;
-    }*/
+    }
 }
 
 void Chip::kill()

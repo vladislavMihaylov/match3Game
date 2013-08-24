@@ -6,6 +6,7 @@
 #include "Types.h"
 
 #include "Constants.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -33,9 +34,11 @@ bool GameScene::init()
         return false;
     }
     
+    
+    
     this->setTouchEnabled(true);
     
-    time = 10;//kGameSessionTime;
+    time = kGameSessionTime;
     
     _timeLabel = CCLabelTTF::create("Time: 60", "Arial", 36);
     _timeLabel->setPosition(ccp(100, 700));
@@ -56,13 +59,15 @@ bool GameScene::init()
     this->addChild(_field);
     
     _restartBtn = CCMenuItemFont::create("Restart!", this, menu_selector(GameScene::restart));
-    _restartBtn->setPosition(ccp(100, 350));
+    _restartBtn->setPosition(ccp(100, 500));
     _restartBtn->setEnabled(false);
     
     CCMenu *menu = CCMenu::create(_restartBtn, NULL);
     menu->setPosition(ccp(0, 0));
     
     this->addChild(menu, 2);
+    
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("md-1.mp3", true);
     
     this->schedule(schedule_selector(GameScene::decreaseTime), 1);
     
@@ -75,7 +80,7 @@ void GameScene::restart()
     
     _restartBtn->setEnabled(false);
     
-    time = 10;//kGameSessionTime;
+    time = kGameSessionTime;
     _timeLabel->setString("Time: 60");
     score = 0;
     _scoreLabel->setString("Score: 0");
@@ -84,6 +89,8 @@ void GameScene::restart()
     _field->shuffle();
     
     _gameOver = false;
+    
+    this->schedule(schedule_selector(GameScene::decreaseTime), 1);
 }
 
 void GameScene::decreaseTime(float ct)
@@ -91,6 +98,11 @@ void GameScene::decreaseTime(float ct)
     if(time > 0)
     {
         time--;
+        
+        if(time < 10)
+        {
+            SimpleAudioEngine::sharedEngine()->playEffect("clock.wav");
+        }
         
         std::ostringstream oss;
         oss << "Time: " << time;
@@ -102,6 +114,10 @@ void GameScene::decreaseTime(float ct)
     }
     else
     {
+        this->unschedule(schedule_selector(GameScene::decreaseTime));
+        
+        SimpleAudioEngine::sharedEngine()->playEffect("lvlComplete.wav");
+        
         this->setTouchEnabled(false);
         
         _restartBtn->setEnabled(true);

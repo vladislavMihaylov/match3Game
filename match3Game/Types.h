@@ -17,12 +17,12 @@
 
 using namespace std;
 
-enum ChipType {
-    CT_Red,
-    CT_Green,
-    CT_Blue,
-    CT_Yellow,
-    CT_Pink
+enum ChipColor {
+    CC_Red,
+    CC_Green,
+    CC_Blue,
+    CC_Yellow,
+    CC_Pink
 };
 
 enum ChipState {

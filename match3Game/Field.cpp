@@ -11,7 +11,10 @@
 #include "Constants.h"
 #include "HelloWorldScene.h"
 
+#include "SimpleAudioEngine.h"
+
 using namespace cocos2d;
+using namespace CocosDenshion;
 using namespace std;
 
 Field::~Field()
@@ -78,13 +81,13 @@ void Field::setUpGrid()
 
 Chip* Field::addChip(int col, int row)
 {
-    Chip *chip = Chip::create(CT_Red);
+    Chip *chip = Chip::create(CC_Red);
     
     chip->setGridCoords(col, row);
     // -> new
     chip->setPosition(ccp(col * (kChipSpacing + kChipWidth) + kChipWidth / 2, row * -(kChipSpacing + kChipHeight) - kChipHeight / 2));
     // -> end были плюсы
-    chip->setType(static_cast<ChipType>(rand() % kNumOfChipTypes));
+    chip->setType(static_cast<ChipColor>(rand() % kNumOfChipTypes));
     
     _chips[row * kFieldWidth + col] = chip;
     
@@ -127,17 +130,11 @@ Chip* Field::getChipAt(int col, int row)
 
 Chip* Field::getChipAtXandY(int x, int y)
 {
-    CCLOG("begin_x: %i begin_y: %i", x, y);
-    
     x -= kFieldBasePoint.x;
     y = kFieldBasePoint.y - y;
     
-    CCLOG("end_x: %i end_y: %i", x, y);
-    
     int col = (x + kChipSpacing) / (kChipWidth + kChipSpacing);
     int row = (y + kChipSpacing) / (kChipHeight + kChipSpacing);
-    
-    CCLOG("col: %i row: %i", col, row);
     
     return getChipAt(col, row);
 }
@@ -175,7 +172,7 @@ bool Field::isItPossibleToPlay()
 
 bool Field::doesChipPatternMatch(int col, int row, Vec2Collection mustHave, Vec2Collection needOne)
 {
-    auto typeMatcher = [&](int col, int row, ChipType type) -> bool
+    auto typeMatcher = [&](int col, int row, ChipColor type) -> bool
     {
         if(col < 0 || col > (kFieldWidth - 1) || row < 0 || row > (kFieldHeight - 1))
         {
@@ -193,11 +190,11 @@ bool Field::doesChipPatternMatch(int col, int row, Vec2Collection mustHave, Vec2
         return false;
     }
     
-    ChipType currentType = currentChip->getType();
+    ChipColor currentColor = currentChip->getType();
     
     for(int i = 0; i < numOfMustHave; ++i)
     {
-        if(!typeMatcher(col + mustHave[i].x, row + mustHave[i].y, currentType))
+        if(!typeMatcher(col + mustHave[i].x, row + mustHave[i].y, currentColor))
         {
             return false;
         }
@@ -205,7 +202,7 @@ bool Field::doesChipPatternMatch(int col, int row, Vec2Collection mustHave, Vec2
     
     for(int i = 0; i < needOne.size(); ++i)
     {
-        if(typeMatcher(col + needOne[i].x, row + needOne[i].y, currentType))
+        if(typeMatcher(col + needOne[i].x, row + needOne[i].y, currentColor))
         {
             return true;
         }
@@ -327,6 +324,8 @@ void Field::removeMatchesIfAny()
                 //these points should be applied once only by the way
                 _game->applyPoints(points);
                 
+                SimpleAudioEngine::sharedEngine()->playEffect("chipBreak.wav");
+                
                 _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
                 
                 
@@ -384,9 +383,12 @@ void Field::addNewChips() {
                 //row * (kChipSpacing + kChipHeight) + kChipHeight / 2
                 newChip->setPosition(ccp(newChip->getPosition().x, (numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
                 
+                newChip->setVisible(false);
+                newChip->setScale(0);
+                newChip->runAction(CCScaleTo::create(0.2, 1));
                 // -> newww newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
                 
-                CCLOG("newChip.position: %f, %f", newChip->getPosition().x, newChip->getPosition().y);
+                //CCLOG("newChip.position: %f, %f", newChip->getPosition().x, newChip->getPosition().y);
                 
                 _isDropping = true;
             }
@@ -491,7 +493,12 @@ void Field::moveChips(float dt)
                 CCPoint requiredPos = ccp(chip->getGridCoords().x * (kChipSpacing + kChipWidth) + kChipWidth / 2,
                                          chip->getGridCoords().y * -(kChipSpacing + kChipHeight) - kChipHeight / 2);
                 
-                ;
+                //CCLOG("CurrentPos.y: %f", chip->getPosition().y);
+                
+                if(chip->getPosition().y < 0)
+                {
+                    chip->setVisible(true);
+                }
                 
                 //move to the bottom
                 if(currentPos.y < requiredPos.y)
