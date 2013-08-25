@@ -9,8 +9,12 @@
 #ifndef match3Test_Constants_h
 #define match3Test_Constants_h
 
-#define kScreenWidth        1024
-#define kScreenHeight       768
+
+extern int kScreenWidth;
+extern int kScreenHeight;
+
+//#define kScreenWidth        1024
+//#define kScreenHeight       768
 
 #define kNumOfChipTypes     5
 #define kNumOfBonusTypes    4

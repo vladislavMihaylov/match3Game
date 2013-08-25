@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F515E92B17CA0EA500A91026 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F515E92A17CA0EA500A91026 /* Constants.cpp */; };
 		F5179C5B17C86DC8005155C5 /* md-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5717C86DC8005155C5 /* md-1.mp3 */; };
 		F5179C5C17C86DC8005155C5 /* clock.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5817C86DC8005155C5 /* clock.wav */; };
 		F5179C5D17C86DC8005155C5 /* lvlComplete.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5917C86DC8005155C5 /* lvlComplete.wav */; };
@@ -301,6 +302,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F515E92A17CA0EA500A91026 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
 		F5179C5717C86DC8005155C5 /* md-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "md-1.mp3"; sourceTree = "<group>"; };
 		F5179C5817C86DC8005155C5 /* clock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clock.wav; sourceTree = "<group>"; };
 		F5179C5917C86DC8005155C5 /* lvlComplete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lvlComplete.wav; sourceTree = "<group>"; };
@@ -2182,6 +2184,7 @@
 				F51971C917C4A43500859CFA /* Field.cpp */,
 				F51971CA17C4A43500859CFA /* Field.h */,
 				F527AFD817C3D5B900B4A1F9 /* Constants.h */,
+				F515E92A17CA0EA500A91026 /* Constants.cpp */,
 				F527AFD717C3CE3E00B4A1F9 /* Types.h */,
 			);
 			name = Classes;
@@ -2527,6 +2530,7 @@
 				F527AFCE17C3CA5800B4A1F9 /* HelloWorldScene.cpp in Sources */,
 				F527AFD617C3CAFE00B4A1F9 /* Chip.cpp in Sources */,
 				F51971CB17C4A43500859CFA /* Field.cpp in Sources */,
+				F515E92B17CA0EA500A91026 /* Constants.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2611,6 +2615,7 @@
 				GCC_PREFIX_HEADER = match3Game/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = match3Game/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/match3Game/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -2637,6 +2642,7 @@
 				GCC_PREFIX_HEADER = match3Game/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = match3Game/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/match3Game/libs/cocos2dx/platform/third_party/ios/libraries\"",

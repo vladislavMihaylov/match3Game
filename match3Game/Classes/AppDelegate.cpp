@@ -12,6 +12,8 @@
 #include "SimpleAudioEngine.h"
 #include "HelloWorldScene.h"
 
+#include "Constants.h"
+
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -41,6 +43,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // run
     pDirector->runWithScene(pScene);
+    
+    
 
     return true;
 }

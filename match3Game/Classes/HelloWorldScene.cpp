@@ -34,31 +34,39 @@ bool GameScene::init()
         return false;
     }
     
+    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    kScreenWidth = size.width;
+    kScreenHeight = size.height;
+    CCLOG("width: %i height: %i", kScreenWidth, kScreenHeight);
     
     this->setTouchEnabled(true);
     
     time = kGameSessionTime;
     
     _timeLabel = CCLabelTTF::create("Time: 60", "Arial", 36);
-    _timeLabel->setPosition(ccp(100, 700));
+    _timeLabel->setPosition(ccp(0.1 * kScreenWidth, 0.9 * kScreenHeight));
     
     _scoreLabel = CCLabelTTF::create("Score: 0", "Arial", 36);
-    _scoreLabel->setPosition(ccp(40, 650));
+    _scoreLabel->setPosition(ccp(0.04 * kScreenWidth, 0.8 * kScreenHeight));
     _scoreLabel->setAnchorPoint(ccp(0, 0.5));
     
     this->addChild(_timeLabel, 2);
     this->addChild(_scoreLabel, 2);
 
     _back = CCSprite::create("back.png");
+    
+   
+    
     _back->setPosition(ccp(kScreenWidth / 2, kScreenHeight / 2));
     this->addChild(_back);
         
     _field = Field::create();
     _field->setGameDelegate(this);
+    _field->setPosition(ccp(0.342 * kScreenWidth, 0.9375 * kScreenHeight));
     this->addChild(_field);
     
     _restartBtn = CCMenuItemFont::create("Restart!", this, menu_selector(GameScene::restart));
-    _restartBtn->setPosition(ccp(100, 500));
+    _restartBtn->setPosition(ccp(0.1 * kScreenWidth, 0.7 * kScreenHeight));
     _restartBtn->setEnabled(false);
     
     CCMenu *menu = CCMenu::create(_restartBtn, NULL);
@@ -154,8 +162,8 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     
     if(!_gameOver)
     {
-        if((touchLocation.x > kFieldBasePoint.x && touchLocation.x < (kFieldBasePoint.x + kFieldAreaWidth)) &&
-           touchLocation.y < kFieldBasePoint.y && touchLocation.y > (kFieldBasePoint.y - kFieldAreaHeight))
+        if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + kFieldAreaWidth)) &&
+           touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - kFieldAreaHeight))
         {
             _field->touchOnPos(touchLocation.x, touchLocation.y);
         }

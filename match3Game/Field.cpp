@@ -40,7 +40,7 @@ Field::Field()
     _chipSelection->setVisible(false);
     
     this->addChild(_chipSelection, 1);
-    this->setPosition(kFieldBasePoint);
+    
     
     _chips.resize(kFieldWidth * kFieldHeight);
     
@@ -136,8 +136,8 @@ Chip* Field::getChipAt(int col, int row)
 
 Chip* Field::getChipAtXandY(int x, int y)
 {
-    x -= kFieldBasePoint.x;
-    y = kFieldBasePoint.y - y;
+    x -= this->getPosition().x;
+    y = this->getPosition().y - y;
     
     int col = (x + kChipSpacing) / (kChipWidth + kChipSpacing);
     int row = (y + kChipSpacing) / (kChipHeight + kChipSpacing);
