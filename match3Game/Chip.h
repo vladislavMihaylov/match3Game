@@ -27,11 +27,7 @@ private:
     
     CCPoint _gridCoords;
     
-    CCLabelTTF *_coords;
-    
 public:
-    
-    void updateLabel(int x, int y);
     
     Chip(ChipColor type);
     ~Chip();

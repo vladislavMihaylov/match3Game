@@ -37,6 +37,8 @@ private:
     bool _isSwapping;
     bool _isDropping;
     
+    bool _isGameOver;
+    
     GameScene *_game;
     CCSprite *_chipSelection;
     
@@ -44,6 +46,8 @@ private:
 public:
     Field();
     ~Field();
+    
+    void setGameOver(bool isGameOver);
     
     bool addInBonusesVector(Chip *chip);
     

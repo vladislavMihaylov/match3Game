@@ -85,6 +85,7 @@ void GameScene::restart()
     score = 0;
     _scoreLabel->setString("Score: 0");
     
+    _field->setGameOver(false);
     
     _field->shuffle();
     
@@ -119,6 +120,8 @@ void GameScene::decreaseTime(float ct)
         SimpleAudioEngine::sharedEngine()->playEffect("lvlComplete.wav");
         
         this->setTouchEnabled(false);
+        
+        _field->setGameOver(true);
         
         _restartBtn->setEnabled(true);
     }

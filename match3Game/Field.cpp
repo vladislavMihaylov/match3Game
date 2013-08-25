@@ -28,6 +28,8 @@ Field::Field()
     _isSwapping = false;
     _isDropping = false;
     
+    _isGameOver = false;
+    
     _chipSelection = nullptr;
     _firstChip = nullptr;
     _game = nullptr;
@@ -52,6 +54,11 @@ Field* Field::create()
     Field *field = new Field();
     
     return field;
+}
+
+void Field::setGameOver(bool isGameOver)
+{
+    _isGameOver = isGameOver;
 }
 
 void Field::setUpGrid()
@@ -91,8 +98,6 @@ Chip* Field::addChip(int col, int row)
     chip->setType(static_cast<ChipColor>(rand() % kNumOfChipTypes));
     
     _chips[row * kFieldWidth + col] = chip;
-    
-    chip->updateLabel(col, row);
     
     this->addChild(chip);
     
@@ -674,13 +679,21 @@ void Field::moveChips(float dt)
         }
     }
     
-    if(moved)
+    if(!_isGameOver)
+    {
+        if(moved)
+        {
+            _game->setTouchEnabled(false);
+        }
+        else
+        {
+            _game->setTouchEnabled(true);
+        }
+    }
+    
+    if(_isGameOver)
     {
         _game->setTouchEnabled(false);
-    }
-    else
-    {
-        _game->setTouchEnabled(true);
     }
     
     if(_isDropping && !moved)
