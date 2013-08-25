@@ -21,11 +21,15 @@ using namespace std;
 typedef vector<Chip *> ChipVector;
 typedef vector<ChipVector> ChipMatrix;
 
+
 class GameScene;
 
 class Field: public cocos2d::CCLayer
 {
 private:
+    
+    vector<Chip *> chipVectorForBonuses;
+    
     ChipVector _chips;
     
     Chip *_firstChip;
@@ -36,9 +40,12 @@ private:
     GameScene *_game;
     CCSprite *_chipSelection;
     
+    
 public:
     Field();
     ~Field();
+    
+    bool addInBonusesVector(Chip *chip);
     
     void setGameDelegate(GameScene *game);
     
@@ -61,6 +68,8 @@ public:
     //void render();
     
     void touchOnPos(int x, int y);
+    
+    
 private:
     
     ChipMatrix getMatchesIfAny();

@@ -13,6 +13,8 @@
 #define kScreenHeight       768
 
 #define kNumOfChipTypes     5
+#define kNumOfBonusTypes    4
+
 #define kFieldBasePoint     ccp(350, 720)
 #define kChipSpacing        2
 #define kChipWidth          72

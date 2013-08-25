@@ -32,6 +32,13 @@ enum ChipState {
     CS_Dead
 };
 
+enum ChipBonus {
+    BT_None,
+    BT_Horizontal,
+    BT_Vertical,
+    BT_Cross
+};
+
 inline float cut(float num, float min, float max)
 {
     if(num < min)

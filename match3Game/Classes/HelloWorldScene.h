@@ -37,6 +37,8 @@ private:
     int time;
     int score;
     
+    
+    
 public:
     
     void restart();

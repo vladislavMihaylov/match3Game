@@ -11,6 +11,9 @@
 		F5179C5C17C86DC8005155C5 /* clock.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5817C86DC8005155C5 /* clock.wav */; };
 		F5179C5D17C86DC8005155C5 /* lvlComplete.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5917C86DC8005155C5 /* lvlComplete.wav */; };
 		F5179C5E17C86DC8005155C5 /* chipBreak.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5A17C86DC8005155C5 /* chipBreak.wav */; };
+		F5179C6217C876B2005155C5 /* b_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5F17C876B2005155C5 /* b_1.png */; };
+		F5179C6317C876B2005155C5 /* b_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5179C6017C876B2005155C5 /* b_2.png */; };
+		F5179C6417C876B2005155C5 /* b_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F5179C6117C876B2005155C5 /* b_3.png */; };
 		F51971C717C4A15400859CFA /* chips.plist in Resources */ = {isa = PBXBuildFile; fileRef = F51971C517C4A15400859CFA /* chips.plist */; };
 		F51971C817C4A15400859CFA /* chips.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971C617C4A15400859CFA /* chips.png */; };
 		F51971CB17C4A43500859CFA /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F51971C917C4A43500859CFA /* Field.cpp */; };
@@ -302,6 +305,9 @@
 		F5179C5817C86DC8005155C5 /* clock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clock.wav; sourceTree = "<group>"; };
 		F5179C5917C86DC8005155C5 /* lvlComplete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lvlComplete.wav; sourceTree = "<group>"; };
 		F5179C5A17C86DC8005155C5 /* chipBreak.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chipBreak.wav; sourceTree = "<group>"; };
+		F5179C5F17C876B2005155C5 /* b_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b_1.png; sourceTree = "<group>"; };
+		F5179C6017C876B2005155C5 /* b_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b_2.png; sourceTree = "<group>"; };
+		F5179C6117C876B2005155C5 /* b_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b_3.png; sourceTree = "<group>"; };
 		F51971C517C4A15400859CFA /* chips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chips.plist; sourceTree = "<group>"; };
 		F51971C617C4A15400859CFA /* chips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chips.png; sourceTree = "<group>"; };
 		F51971C917C4A43500859CFA /* Field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Field.cpp; sourceTree = "<group>"; };
@@ -931,6 +937,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F5179C6517C876B6005155C5 /* bonuses */ = {
+			isa = PBXGroup;
+			children = (
+				F5179C5F17C876B2005155C5 /* b_1.png */,
+				F5179C6017C876B2005155C5 /* b_2.png */,
+				F5179C6117C876B2005155C5 /* b_3.png */,
+			);
+			name = bonuses;
+			sourceTree = "<group>";
+		};
+		F5179C6617C876C0005155C5 /* colors */ = {
+			isa = PBXGroup;
+			children = (
+				F51971D017C4D56800859CFA /* ct_0.png */,
+				F51971D117C4D56800859CFA /* ct_1.png */,
+				F51971D217C4D56800859CFA /* ct_2.png */,
+				F51971D317C4D56800859CFA /* ct_3.png */,
+				F51971D417C4D56800859CFA /* ct_4.png */,
+			);
+			name = colors;
+			sourceTree = "<group>";
+		};
+		F5179C6717C876CF005155C5 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F5179C5717C86DC8005155C5 /* md-1.mp3 */,
+				F5179C5817C86DC8005155C5 /* clock.wav */,
+				F5179C5917C86DC8005155C5 /* lvlComplete.wav */,
+				F5179C5A17C86DC8005155C5 /* chipBreak.wav */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
 		F527AC1B17C3CA4F00B4A1F9 = {
 			isa = PBXGroup;
 			children = (
@@ -978,15 +1017,9 @@
 		F527AC3817C3CA4F00B4A1F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F5179C5717C86DC8005155C5 /* md-1.mp3 */,
-				F5179C5817C86DC8005155C5 /* clock.wav */,
-				F5179C5917C86DC8005155C5 /* lvlComplete.wav */,
-				F5179C5A17C86DC8005155C5 /* chipBreak.wav */,
-				F51971D017C4D56800859CFA /* ct_0.png */,
-				F51971D117C4D56800859CFA /* ct_1.png */,
-				F51971D217C4D56800859CFA /* ct_2.png */,
-				F51971D317C4D56800859CFA /* ct_3.png */,
-				F51971D417C4D56800859CFA /* ct_4.png */,
+				F5179C6717C876CF005155C5 /* sounds */,
+				F5179C6617C876C0005155C5 /* colors */,
+				F5179C6517C876B6005155C5 /* bonuses */,
 				F51971CE17C4AA2100859CFA /* back.png */,
 				F51971CC17C4A84800859CFA /* selection.png */,
 				F51971C517C4A15400859CFA /* chips.plist */,
@@ -2230,6 +2263,9 @@
 				F5179C5C17C86DC8005155C5 /* clock.wav in Resources */,
 				F5179C5D17C86DC8005155C5 /* lvlComplete.wav in Resources */,
 				F5179C5E17C86DC8005155C5 /* chipBreak.wav in Resources */,
+				F5179C6217C876B2005155C5 /* b_1.png in Resources */,
+				F5179C6317C876B2005155C5 /* b_2.png in Resources */,
+				F5179C6417C876B2005155C5 /* b_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

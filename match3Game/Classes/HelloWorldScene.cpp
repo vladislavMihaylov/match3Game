@@ -35,7 +35,6 @@ bool GameScene::init()
     }
     
     
-    
     this->setTouchEnabled(true);
     
     time = kGameSessionTime;
@@ -70,6 +69,7 @@ bool GameScene::init()
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic("md-1.mp3", true);
     
     this->schedule(schedule_selector(GameScene::decreaseTime), 1);
+    
     
     return true;
 }

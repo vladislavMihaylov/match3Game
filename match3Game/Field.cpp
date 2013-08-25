@@ -19,11 +19,12 @@ using namespace std;
 
 Field::~Field()
 {
-    
+
 }
 
 Field::Field()
 {
+    
     _isSwapping = false;
     _isDropping = false;
     
@@ -84,9 +85,9 @@ Chip* Field::addChip(int col, int row)
     Chip *chip = Chip::create(CC_Red);
     
     chip->setGridCoords(col, row);
-    // -> new
+
     chip->setPosition(ccp(col * (kChipSpacing + kChipWidth) + kChipWidth / 2, row * -(kChipSpacing + kChipHeight) - kChipHeight / 2));
-    // -> end были плюсы
+
     chip->setType(static_cast<ChipColor>(rand() % kNumOfChipTypes));
     
     _chips[row * kFieldWidth + col] = chip;
@@ -215,13 +216,15 @@ ChipMatrix Field::getMatchesIfAny()
 {
     ChipMatrix resultingMatch;
     
-    auto checkRows = [&](int row, int col) -> ChipVector {
+    auto checkRows = [&](int row, int col) -> ChipVector
+    {
         Chip *chipToCheck = getChipAt(col, row);
         
         ChipVector result;
         result.push_back(chipToCheck);
         
-        if(chipToCheck == nullptr) {
+        if(chipToCheck == nullptr)
+        {
             return result;
         }
         
@@ -230,9 +233,13 @@ ChipMatrix Field::getMatchesIfAny()
         {
             Chip *currentChip = getChipAt(col + i, row);
             
-            if(currentChip && chipToCheck->getType() == currentChip->getType()) {
+            if(currentChip && chipToCheck->getType() == currentChip->getType())
+            {
                 result.push_back(currentChip);
-            } else {
+                
+            }
+            else
+            {
                 return result;
             }
         }
@@ -258,6 +265,7 @@ ChipMatrix Field::getMatchesIfAny()
             if(currentChip && chipToCheck->getType() == currentChip->getType())
             {
                 result.push_back(currentChip);
+                
             }
             else
             {
@@ -279,7 +287,7 @@ ChipMatrix Field::getMatchesIfAny()
             if(match.size() > 2)
             {
                 resultingMatch.push_back(match);
-                //skip this match
+                
                 col += (match.size() - 1);
             }
         }
@@ -292,6 +300,7 @@ ChipMatrix Field::getMatchesIfAny()
             auto match = checkColumns(row, col);
             if(match.size() > 2)
             {
+               
                 resultingMatch.push_back(match);
                 row += (match.size() - 1);
             }
@@ -306,13 +315,124 @@ void Field::setGameDelegate(GameScene *game)
     _game = game;
 }
 
+bool Field::addInBonusesVector(Chip *curChip)
+{
+    bool isHaveBonus = false;
+    
+    if(curChip->getBonus() != BT_None)
+    {
+        isHaveBonus = true;
+        
+        if(curChip->getBonus() == BT_Horizontal)
+        {
+            CCLOG("Horizontal");
+            
+            curChip->setBonus(BT_None);
+            
+            for(int z = 0; z < kFieldWidth; z++)
+            {
+                Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
+                
+                chipVectorForBonuses.push_back(chipForAdding);
+            }
+        }
+        if(curChip->getBonus() == BT_Vertical)
+        {
+            CCLOG("Vertical");
+            
+            curChip->setBonus(BT_None);
+            
+            for(int z = 0; z < kFieldHeight; z++)
+            {
+                Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
+                
+                chipVectorForBonuses.push_back(chipForAdding);
+            }
+        }
+        if(curChip->getBonus() == BT_Cross)
+        {
+            CCLOG("Cross");
+            
+            curChip->setBonus(BT_None);
+            
+            for(int z = 0; z < kFieldWidth; z++)
+            {
+                Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
+                
+                chipVectorForBonuses.push_back(chipForAdding);
+            }
+            for(int z = 0; z < kFieldHeight; z++)
+            {
+                Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
+                
+                chipVectorForBonuses.push_back(chipForAdding);
+            }
+        }
+    }
+
+    
+    return isHaveBonus;
+}
+
 void Field::removeMatchesIfAny()
 {
     auto matches = getMatchesIfAny();
     
+    //////////
+    
+    //vector<Chip *> chipVectorForBonuses;
+    
+    int matchSize = matches.size();
+    
+    
+    if(matchSize > 0)
+    {
+        for(int i = 0; i < matchSize; i++)
+        {
+            vector<Chip *> curVector = matches[i];
+            
+            int curVectorSize = curVector.size();
+            
+            for(int k = 0; k < curVectorSize; k++)
+            {
+                Chip *curChip = curVector[k];
+                
+                addInBonusesVector(curChip);
+            }
+        }
+    }
+    
+    
+    
+    bool isHaveBonus = true;
+    
+    //matches.push_back(chipVectorForDie);
+    while(isHaveBonus)
+    {
+        int vectorForBonusesSize = chipVectorForBonuses.size();
+        
+        isHaveBonus = false;
+        
+        for(int i = 0; i < vectorForBonusesSize; i++)
+        {
+            Chip *curChip = chipVectorForBonuses[i];
+            
+            isHaveBonus = addInBonusesVector(curChip);
+        }
+    }
+    
+    matches.push_back(chipVectorForBonuses);
+    
+    chipVectorForBonuses.clear();
+    ///////////
+    
     int numOfMatches = static_cast<int>(matches.size());
     
-    for(int i = 0; i < numOfMatches; ++i) {
+    //vector<Chip *> chipsForDie;
+
+    
+    for(int i = 0; i < numOfMatches; ++i)
+    {
         int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
         for(int j = 0; j < matches[i].size(); ++j) {
             
@@ -326,9 +446,9 @@ void Field::removeMatchesIfAny()
                 
                 SimpleAudioEngine::sharedEngine()->playEffect("chipBreak.wav");
                 
+                
+                
                 _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
-                
-                
                 
                 displaceChips(chip);
                 //would be nice to add this chip to a special list and
@@ -382,6 +502,13 @@ void Field::addNewChips() {
                 Chip *newChip = addChip(col, row);
                 //row * (kChipSpacing + kChipHeight) + kChipHeight / 2
                 newChip->setPosition(ccp(newChip->getPosition().x, (numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
+                
+                int willBeBonus = random()%10;
+                
+                if(willBeBonus == 5) // чтобы бонус выпадал довольно таки редко
+                {
+                    newChip->setBonus(static_cast<ChipBonus>(random() % kNumOfBonusTypes));
+                }
                 
                 newChip->setVisible(false);
                 newChip->setScale(0);
@@ -541,8 +668,19 @@ void Field::moveChips(float dt)
                     
                     moved = true;
                 }
+                
+                
             }
         }
+    }
+    
+    if(moved)
+    {
+        _game->setTouchEnabled(false);
+    }
+    else
+    {
+        _game->setTouchEnabled(true);
     }
     
     if(_isDropping && !moved)

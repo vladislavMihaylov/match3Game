@@ -19,9 +19,11 @@ class Chip: public cocos2d::CCNode
 {
 private:
     CCSprite *sprite;
+    CCSprite *bonusSprite;
     
     ChipColor _type;
     ChipState _state;
+    ChipBonus _bonus;
     
     CCPoint _gridCoords;
     
@@ -40,10 +42,13 @@ public:
     void setGridCoords(int col, int row);
     void setGridCoords(CCPoint coords);
     
+    void setBonus(ChipBonus bonus);
+    
     CCPoint getGridCoords();
     
-    ChipColor  getType();
+    ChipColor getType();
     ChipState getState();
+    ChipBonus getBonus();
     
     void die();
     

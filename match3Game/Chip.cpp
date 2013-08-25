@@ -20,8 +20,13 @@ Chip::Chip(ChipColor type)
     sprite = CCSprite::create(name);
     this->addChild(sprite);
     
+    bonusSprite = CCSprite::create();
+    this->addChild(bonusSprite);
+    
     setState(CS_Init);
     setType(type);
+    setBonus(BT_None);
+    //_bonus = BT_None;
     
     _coords = CCLabelTTF::create("1,1", "Arial", 16);
     _coords->setColor(ccc3(0, 0, 0));
@@ -86,6 +91,28 @@ void Chip::setGridCoords(CCPoint coords)
     _gridCoords = coords;
 }
 
+void Chip::setBonus(ChipBonus bonus)
+{
+    _bonus = bonus;
+    
+    std::ostringstream oss;
+    oss << "b_" << bonus << ".png";
+    std::string str = oss.str();
+    
+    const char *name = str.c_str();
+    
+    this->removeChild(bonusSprite, true);
+    if(bonus == BT_None)
+    {
+        bonusSprite = CCSprite::create();
+    }
+    else
+    {
+        bonusSprite = CCSprite::create(name);
+    }
+    this->addChild(bonusSprite,2);
+}
+
 // getters
 
 ChipColor Chip::getType()
@@ -101,6 +128,11 @@ ChipState Chip::getState()
 CCPoint Chip::getGridCoords()
 {
     return _gridCoords;
+}
+
+ChipBonus Chip::getBonus()
+{
+    return _bonus;
 }
 
 // other
