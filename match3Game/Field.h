@@ -28,7 +28,7 @@ class Field: public cocos2d::CCLayer
 {
 private:
     
-    vector<Chip *> chipVectorForBonuses;
+    vector<Chip *> _chipVectorForBonuses;
     
     ChipVector _chips;
     
@@ -36,7 +36,6 @@ private:
     
     bool _isSwapping;
     bool _isDropping;
-    
     bool _isGameOver;
     
     GameScene *_game;
@@ -48,22 +47,21 @@ private:
     float _fieldAreaHeight;
     
     
-    
 public:
     Field();
     ~Field();
     
+    static Field* create();
+    
+    void setUpGrid();
+    
+    void setGameOver(bool isGameOver);
+    void setGameDelegate(GameScene *game);
+    
     float getFieldAreaWidth();
     float getFieldAreaHeight();
     
-    void setGameOver(bool isGameOver);
-    
     bool addInBonusesVector(Chip *chip);
-    
-    void setGameDelegate(GameScene *game);
-    
-    static Field* create();
-    void setUpGrid();
     
     Chip* addChip(int col, int row);
     Chip* getChipAt(int col, int row);
@@ -77,15 +75,12 @@ public:
     
     void swap(Chip *a, Chip *b);
     
-    //void visit();
-    //void render();
-    
     void touchOnPos(int x, int y);
-    
     
 private:
     
     ChipMatrix getMatchesIfAny();
+    
     bool isItPossibleToPlay();
     
     void removeMatchesIfAny();

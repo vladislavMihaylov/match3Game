@@ -52,26 +52,11 @@ Field::Field()
     this->scheduleUpdate();
 }
 
-float Field::getFieldAreaWidth()
-{
-    return _fieldAreaWidth;
-}
-
-float Field::getFieldAreaHeight()
-{
-    return _fieldAreaHeight;
-}
-
 Field* Field::create()
 {
     Field *field = new Field();
     
     return field;
-}
-
-void Field::setGameOver(bool isGameOver)
-{
-    _isGameOver = isGameOver;
 }
 
 void Field::setUpGrid()
@@ -99,6 +84,25 @@ void Field::setUpGrid()
         break;
     }
 }
+
+float Field::getFieldAreaWidth()
+{
+    return _fieldAreaWidth;
+}
+
+float Field::getFieldAreaHeight()
+{
+    return _fieldAreaHeight;
+}
+
+
+
+void Field::setGameOver(bool isGameOver)
+{
+    _isGameOver = isGameOver;
+}
+
+
 
 Chip* Field::addChip(int col, int row)
 {
@@ -353,7 +357,7 @@ bool Field::addInBonusesVector(Chip *curChip)
             {
                 Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
                 
-                chipVectorForBonuses.push_back(chipForAdding);
+                _chipVectorForBonuses.push_back(chipForAdding);
             }
         }
         if(curChip->getBonus() == BT_Vertical)
@@ -366,7 +370,7 @@ bool Field::addInBonusesVector(Chip *curChip)
             {
                 Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
                 
-                chipVectorForBonuses.push_back(chipForAdding);
+                _chipVectorForBonuses.push_back(chipForAdding);
             }
         }
         if(curChip->getBonus() == BT_Cross)
@@ -379,13 +383,13 @@ bool Field::addInBonusesVector(Chip *curChip)
             {
                 Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
                 
-                chipVectorForBonuses.push_back(chipForAdding);
+                _chipVectorForBonuses.push_back(chipForAdding);
             }
             for(int z = 0; z < kFieldHeight; z++)
             {
                 Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
                 
-                chipVectorForBonuses.push_back(chipForAdding);
+                _chipVectorForBonuses.push_back(chipForAdding);
             }
         }
     }
@@ -399,8 +403,6 @@ void Field::removeMatchesIfAny()
     auto matches = getMatchesIfAny();
     
     //////////
-    
-    //vector<Chip *> chipVectorForBonuses;
     
     int matchSize = matches.size();
     
@@ -422,28 +424,26 @@ void Field::removeMatchesIfAny()
         }
     }
     
-    
-    
     bool isHaveBonus = true;
     
     //matches.push_back(chipVectorForDie);
     while(isHaveBonus)
     {
-        int vectorForBonusesSize = chipVectorForBonuses.size();
+        int vectorForBonusesSize = _chipVectorForBonuses.size();
         
         isHaveBonus = false;
         
         for(int i = 0; i < vectorForBonusesSize; i++)
         {
-            Chip *curChip = chipVectorForBonuses[i];
+            Chip *curChip = _chipVectorForBonuses[i];
             
             isHaveBonus = addInBonusesVector(curChip);
         }
     }
     
-    matches.push_back(chipVectorForBonuses);
+    matches.push_back(_chipVectorForBonuses);
     
-    chipVectorForBonuses.clear();
+    _chipVectorForBonuses.clear();
     ///////////
     
     int numOfMatches = static_cast<int>(matches.size());

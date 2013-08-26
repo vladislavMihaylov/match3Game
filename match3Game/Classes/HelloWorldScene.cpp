@@ -41,14 +41,14 @@ bool GameScene::init()
     
     this->setTouchEnabled(true);
     
-    time = kGameSessionTime;
+    _time = kGameSessionTime;
     
-    _timeLabel = CCLabelTTF::create("Time: 60", "Arial", 36);
-    _timeLabel->setPosition(ccp(0.05 * _screenWidth, 0.9 * _screenHeight));
+    _timeLabel = CCLabelTTF::create("Time: 60", "Arial", 18);
+    _timeLabel->setPosition(ccp(0.08 * _screenWidth, 0.9 * _screenHeight));
     _timeLabel->setAnchorPoint(ccp(0, 0.5));
     
-    _scoreLabel = CCLabelTTF::create("Score: 0", "Arial", 36);
-    _scoreLabel->setPosition(ccp(0.05 * _screenWidth, 0.8 * _screenHeight));
+    _scoreLabel = CCLabelTTF::create("Score: 0", "Arial", 18);
+    _scoreLabel->setPosition(ccp(0.08 * _screenWidth, 0.8 * _screenHeight));
     _scoreLabel->setAnchorPoint(ccp(0, 0.5));
     
     this->addChild(_timeLabel, 2);
@@ -88,33 +88,31 @@ void GameScene::restart()
     
     _restartBtn->setEnabled(false);
     
-    time = kGameSessionTime;
+    _time = kGameSessionTime;
     _timeLabel->setString("Time: 60");
-    score = 0;
+    _score = 0;
     _scoreLabel->setString("Score: 0");
     
     _field->setGameOver(false);
     
     _field->shuffle();
     
-    _gameOver = false;
-    
     this->schedule(schedule_selector(GameScene::decreaseTime), 1);
 }
 
 void GameScene::decreaseTime(float ct)
 {
-    if(time > 0)
+    if(_time > 0)
     {
-        time--;
+        _time--;
         
-        if(time < 10)
+        if(_time < 10)
         {
             SimpleAudioEngine::sharedEngine()->playEffect("clock.wav");
         }
         
         std::ostringstream oss;
-        oss << "Time: " << time;
+        oss << "Time: " << _time;
         std::string str = oss.str();
         
         const char *c_time = str.c_str();
@@ -137,10 +135,10 @@ void GameScene::decreaseTime(float ct)
 
 void GameScene::applyPoints(int points)
 {
-    score += points;
+    _score += points;
     
     std::ostringstream oss;
-    oss << "Score: " << score;
+    oss << "Score: " << _score;
     std::string str = oss.str();
     
     const char *c_score = str.c_str();
@@ -160,18 +158,10 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     touchLocation = this->convertToNodeSpace(touchLocation);
     
     
-    if(!_gameOver)
+    if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
+       touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight()))
     {
-        if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
-           touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight()))
-        {
-            _field->touchOnPos(touchLocation.x, touchLocation.y);
-        }
-    
-    }
-    else
-    {
-        _field->shuffle();
+        _field->touchOnPos(touchLocation.x, touchLocation.y);
     }
     
     return true;

@@ -17,13 +17,13 @@ Chip::Chip(ChipColor type)
     
     const char *name = str.c_str();
     
-    sprite = CCSprite::create(name);
-    this->addChild(sprite);
+    _sprite = CCSprite::create(name);
+    this->addChild(_sprite);
     
-    this->setContentSize(sprite->getContentSize());
+    this->setContentSize(_sprite->getContentSize());
     
-    bonusSprite = CCSprite::create();
-    this->addChild(bonusSprite);
+    _bonusSprite = CCSprite::create();
+    this->addChild(_bonusSprite);
     
     setState(CS_Init);
     setType(type);
@@ -56,10 +56,10 @@ void Chip::setType(ChipColor type)
     
     const char *name = str.c_str();
     
-    this->removeChild(sprite, true);
+    this->removeChild(_sprite, true);
     
-    sprite = CCSprite::create(name);
-    this->addChild(sprite);
+    _sprite = CCSprite::create(name);
+    this->addChild(_sprite);
 }
 
 void Chip::setState(ChipState state)
@@ -87,16 +87,16 @@ void Chip::setBonus(ChipBonus bonus)
     
     const char *name = str.c_str();
     
-    this->removeChild(bonusSprite, true);
+    this->removeChild(_bonusSprite, true);
     if(bonus == BT_None)
     {
-        bonusSprite = CCSprite::create();
+        _bonusSprite = CCSprite::create();
     }
     else
     {
-        bonusSprite = CCSprite::create(name);
+        _bonusSprite = CCSprite::create(name);
     }
-    this->addChild(bonusSprite,2);
+    this->addChild(_bonusSprite,2);
 }
 
 // getters
@@ -128,6 +128,11 @@ void Chip::die()
     _state = CS_Dying;
 }
 
+void Chip::kill()
+{
+    setState(CS_Dead);
+}
+
 void Chip::update(float dt)
 {
     
@@ -135,7 +140,7 @@ void Chip::update(float dt)
     {
         case CS_Init:
         {
-            sprite->runAction(CCScaleTo::create(0.3, 1));
+            _sprite->runAction(CCScaleTo::create(0.3, 1));
             _state = CS_Normal;
         } break;
             
@@ -152,7 +157,7 @@ void Chip::update(float dt)
             
             CCArray *seqArr = CCArray::create(scaleAction, call, NULL);
             
-            sprite->runAction(CCSequence::create(seqArr));
+            _sprite->runAction(CCSequence::create(seqArr));
             
         } break;
             
@@ -162,11 +167,7 @@ void Chip::update(float dt)
         } break;
             
         default:
-            break;
+          break;
     }
 }
 
-void Chip::kill()
-{
-    setState(CS_Dead);
-}

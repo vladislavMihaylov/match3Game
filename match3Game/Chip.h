@@ -18,8 +18,8 @@ using namespace cocos2d;
 class Chip: public cocos2d::CCNode
 {
 private:
-    CCSprite *sprite;
-    CCSprite *bonusSprite;
+    CCSprite *_sprite;
+    CCSprite *_bonusSprite;
     
     ChipColor _type;
     ChipState _state;
@@ -37,7 +37,6 @@ public:
     void setType(ChipColor type);
     void setGridCoords(int col, int row);
     void setGridCoords(CCPoint coords);
-    
     void setBonus(ChipBonus bonus);
     
     CCPoint getGridCoords();
@@ -47,10 +46,9 @@ public:
     ChipBonus getBonus();
     
     void die();
-    
-    void update(float dt);
-    
     void kill();
+    
+     void update(float dt);
     
 private:
     void setState(ChipState state);
