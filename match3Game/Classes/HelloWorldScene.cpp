@@ -35,19 +35,20 @@ bool GameScene::init()
     }
     
     CCSize size = CCDirector::sharedDirector()->getWinSize();
-    kScreenWidth = size.width;
-    kScreenHeight = size.height;
-    CCLOG("width: %i height: %i", kScreenWidth, kScreenHeight);
+    _screenWidth = size.width;
+    _screenHeight = size.height;
+    CCLOG("width: %f height: %f", _screenWidth, _screenHeight);
     
     this->setTouchEnabled(true);
     
     time = kGameSessionTime;
     
     _timeLabel = CCLabelTTF::create("Time: 60", "Arial", 36);
-    _timeLabel->setPosition(ccp(0.1 * kScreenWidth, 0.9 * kScreenHeight));
+    _timeLabel->setPosition(ccp(0.05 * _screenWidth, 0.9 * _screenHeight));
+    _timeLabel->setAnchorPoint(ccp(0, 0.5));
     
     _scoreLabel = CCLabelTTF::create("Score: 0", "Arial", 36);
-    _scoreLabel->setPosition(ccp(0.04 * kScreenWidth, 0.8 * kScreenHeight));
+    _scoreLabel->setPosition(ccp(0.05 * _screenWidth, 0.8 * _screenHeight));
     _scoreLabel->setAnchorPoint(ccp(0, 0.5));
     
     this->addChild(_timeLabel, 2);
@@ -55,18 +56,17 @@ bool GameScene::init()
 
     _back = CCSprite::create("back.png");
     
-   
-    
-    _back->setPosition(ccp(kScreenWidth / 2, kScreenHeight / 2));
+    _back->setPosition(ccp(_screenWidth / 2, _screenHeight / 2));
     this->addChild(_back);
         
     _field = Field::create();
     _field->setGameDelegate(this);
-    _field->setPosition(ccp(0.342 * kScreenWidth, 0.9375 * kScreenHeight));
+    _field->setPosition(ccp(0.345 * _screenWidth, 0.96 * _screenHeight));
     this->addChild(_field);
     
     _restartBtn = CCMenuItemFont::create("Restart!", this, menu_selector(GameScene::restart));
-    _restartBtn->setPosition(ccp(0.1 * kScreenWidth, 0.7 * kScreenHeight));
+    _restartBtn->setPosition(ccp(0.05 * _screenWidth, 0.7 * _screenHeight));
+    _restartBtn->setAnchorPoint(ccp(0, 0.5));
     _restartBtn->setEnabled(false);
     
     CCMenu *menu = CCMenu::create(_restartBtn, NULL);
@@ -162,8 +162,8 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
     
     if(!_gameOver)
     {
-        if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + kFieldAreaWidth)) &&
-           touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - kFieldAreaHeight))
+        if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
+           touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight()))
         {
             _field->touchOnPos(touchLocation.x, touchLocation.y);
         }

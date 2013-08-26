@@ -46,7 +46,20 @@ Field::Field()
     
     setUpGrid();
     
+    _fieldAreaWidth = (kFieldWidth * _chipSize.width + (kFieldWidth - 1) * kChipSpacing);
+    _fieldAreaHeight = (kFieldHeight * _chipSize.height + (kFieldWidth - 1) * kChipSpacing);
+    
     this->scheduleUpdate();
+}
+
+float Field::getFieldAreaWidth()
+{
+    return _fieldAreaWidth;
+}
+
+float Field::getFieldAreaHeight()
+{
+    return _fieldAreaHeight;
 }
 
 Field* Field::create()
@@ -92,8 +105,10 @@ Chip* Field::addChip(int col, int row)
     Chip *chip = Chip::create(CC_Red);
     
     chip->setGridCoords(col, row);
+    
+    _chipSize = chip->getContentSize();
 
-    chip->setPosition(ccp(col * (kChipSpacing + kChipWidth) + kChipWidth / 2, row * -(kChipSpacing + kChipHeight) - kChipHeight / 2));
+    chip->setPosition(ccp(col * (kChipSpacing + _chipSize.width) + _chipSize.width / 2, row * -(kChipSpacing + _chipSize.height) - _chipSize.height / 2));
 
     chip->setType(static_cast<ChipColor>(rand() % kNumOfChipTypes));
     
@@ -139,8 +154,8 @@ Chip* Field::getChipAtXandY(int x, int y)
     x -= this->getPosition().x;
     y = this->getPosition().y - y;
     
-    int col = (x + kChipSpacing) / (kChipWidth + kChipSpacing);
-    int row = (y + kChipSpacing) / (kChipHeight + kChipSpacing);
+    int col = (x + kChipSpacing) / (_chipSize.width + kChipSpacing);
+    int row = (y + kChipSpacing) / (_chipSize.height + kChipSpacing);
     
     return getChipAt(col, row);
 }
@@ -622,8 +637,8 @@ void Field::moveChips(float dt)
             if(chip != nullptr) {
                 
                 CCPoint currentPos = chip->getPosition();
-                CCPoint requiredPos = ccp(chip->getGridCoords().x * (kChipSpacing + kChipWidth) + kChipWidth / 2,
-                                         chip->getGridCoords().y * -(kChipSpacing + kChipHeight) - kChipHeight / 2);
+                CCPoint requiredPos = ccp(chip->getGridCoords().x * (kChipSpacing + _chipSize.width) + _chipSize.width / 2,
+                                         chip->getGridCoords().y * -(kChipSpacing + _chipSize.height) - _chipSize.height / 2);
                 
                 //CCLOG("CurrentPos.y: %f", chip->getPosition().y);
                 

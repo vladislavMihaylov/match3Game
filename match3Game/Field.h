@@ -42,10 +42,19 @@ private:
     GameScene *_game;
     CCSprite *_chipSelection;
     
+    CCSize _chipSize;
+    
+    float _fieldAreaWidth;
+    float _fieldAreaHeight;
+    
+    
     
 public:
     Field();
     ~Field();
+    
+    float getFieldAreaWidth();
+    float getFieldAreaHeight();
     
     void setGameOver(bool isGameOver);
     

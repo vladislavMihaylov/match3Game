@@ -37,7 +37,8 @@ private:
     int time;
     int score;
     
-    
+    float _screenWidth;
+    float _screenHeight;
     
 public:
     

@@ -20,6 +20,8 @@ Chip::Chip(ChipColor type)
     sprite = CCSprite::create(name);
     this->addChild(sprite);
     
+    this->setContentSize(sprite->getContentSize());
+    
     bonusSprite = CCSprite::create();
     this->addChild(bonusSprite);
     

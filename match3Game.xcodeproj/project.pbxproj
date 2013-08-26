@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F515E92B17CA0EA500A91026 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F515E92A17CA0EA500A91026 /* Constants.cpp */; };
+		F515E93217CA75C900A91026 /* iphone in Resources */ = {isa = PBXBuildFile; fileRef = F515E93117CA75C900A91026 /* iphone */; };
 		F5179C5B17C86DC8005155C5 /* md-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5717C86DC8005155C5 /* md-1.mp3 */; };
 		F5179C5C17C86DC8005155C5 /* clock.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5817C86DC8005155C5 /* clock.wav */; };
 		F5179C5D17C86DC8005155C5 /* lvlComplete.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5917C86DC8005155C5 /* lvlComplete.wav */; };
@@ -19,7 +19,6 @@
 		F51971C817C4A15400859CFA /* chips.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971C617C4A15400859CFA /* chips.png */; };
 		F51971CB17C4A43500859CFA /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F51971C917C4A43500859CFA /* Field.cpp */; };
 		F51971CD17C4A84800859CFA /* selection.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971CC17C4A84800859CFA /* selection.png */; };
-		F51971CF17C4AA2100859CFA /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971CE17C4AA2100859CFA /* back.png */; };
 		F51971D517C4D56800859CFA /* ct_0.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971D017C4D56800859CFA /* ct_0.png */; };
 		F51971D617C4D56800859CFA /* ct_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971D117C4D56800859CFA /* ct_1.png */; };
 		F51971D717C4D56800859CFA /* ct_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F51971D217C4D56800859CFA /* ct_2.png */; };
@@ -299,10 +298,15 @@
 		F527AFCB17C3CA5800B4A1F9 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F527AFCA17C3CA5800B4A1F9 /* AppDelegate.cpp */; };
 		F527AFCE17C3CA5800B4A1F9 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F527AFCD17C3CA5800B4A1F9 /* HelloWorldScene.cpp */; };
 		F527AFD617C3CAFE00B4A1F9 /* Chip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F527AFD417C3CAFE00B4A1F9 /* Chip.cpp */; };
+		F5F8B49D17CB2C3700E7E2B8 /* iphonehd in Resources */ = {isa = PBXBuildFile; fileRef = F5F8B49C17CB2C3700E7E2B8 /* iphonehd */; };
+		F5F8B49F17CB2E3000E7E2B8 /* ipadhd in Resources */ = {isa = PBXBuildFile; fileRef = F5F8B49E17CB2E3000E7E2B8 /* ipadhd */; };
+		F5F8B4A117CB2E8E00E7E2B8 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = F5F8B4A017CB2E8E00E7E2B8 /* ipad */; };
+		F5F8B4A317CB374500E7E2B8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F8B4A217CB374500E7E2B8 /* Default-568h@2x.png */; };
+		F5F8B4A517CB3BBC00E7E2B8 /* iphone5 in Resources */ = {isa = PBXBuildFile; fileRef = F5F8B4A417CB3BBC00E7E2B8 /* iphone5 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F515E92A17CA0EA500A91026 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
+		F515E93117CA75C900A91026 /* iphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphone; sourceTree = "<group>"; };
 		F5179C5717C86DC8005155C5 /* md-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "md-1.mp3"; sourceTree = "<group>"; };
 		F5179C5817C86DC8005155C5 /* clock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clock.wav; sourceTree = "<group>"; };
 		F5179C5917C86DC8005155C5 /* lvlComplete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lvlComplete.wav; sourceTree = "<group>"; };
@@ -315,7 +319,6 @@
 		F51971C917C4A43500859CFA /* Field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Field.cpp; sourceTree = "<group>"; };
 		F51971CA17C4A43500859CFA /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
 		F51971CC17C4A84800859CFA /* selection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selection.png; sourceTree = "<group>"; };
-		F51971CE17C4AA2100859CFA /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		F51971D017C4D56800859CFA /* ct_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ct_0.png; sourceTree = "<group>"; };
 		F51971D117C4D56800859CFA /* ct_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ct_1.png; sourceTree = "<group>"; };
 		F51971D217C4D56800859CFA /* ct_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ct_2.png; sourceTree = "<group>"; };
@@ -915,6 +918,11 @@
 		F527AFD517C3CAFE00B4A1F9 /* Chip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chip.h; sourceTree = "<group>"; };
 		F527AFD717C3CE3E00B4A1F9 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		F527AFD817C3D5B900B4A1F9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		F5F8B49C17CB2C3700E7E2B8 /* iphonehd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphonehd; sourceTree = "<group>"; };
+		F5F8B49E17CB2E3000E7E2B8 /* ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipadhd; sourceTree = "<group>"; };
+		F5F8B4A017CB2E8E00E7E2B8 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipad; sourceTree = "<group>"; };
+		F5F8B4A217CB374500E7E2B8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		F5F8B4A417CB3BBC00E7E2B8 /* iphone5 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphone5; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1019,16 +1027,21 @@
 		F527AC3817C3CA4F00B4A1F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5F8B4A417CB3BBC00E7E2B8 /* iphone5 */,
+				F5F8B4A017CB2E8E00E7E2B8 /* ipad */,
+				F5F8B49E17CB2E3000E7E2B8 /* ipadhd */,
+				F5F8B49C17CB2C3700E7E2B8 /* iphonehd */,
+				F515E93117CA75C900A91026 /* iphone */,
 				F5179C6717C876CF005155C5 /* sounds */,
 				F5179C6617C876C0005155C5 /* colors */,
 				F5179C6517C876B6005155C5 /* bonuses */,
-				F51971CE17C4AA2100859CFA /* back.png */,
 				F51971CC17C4A84800859CFA /* selection.png */,
 				F51971C517C4A15400859CFA /* chips.plist */,
 				F51971C617C4A15400859CFA /* chips.png */,
 				F527AC3917C3CA4F00B4A1F9 /* CloseNormal.png */,
 				F527AC3B17C3CA4F00B4A1F9 /* CloseSelected.png */,
 				F527AC3D17C3CA4F00B4A1F9 /* Default.png */,
+				F5F8B4A217CB374500E7E2B8 /* Default-568h@2x.png */,
 				F527AC3F17C3CA4F00B4A1F9 /* HelloWorld.png */,
 				F527AC4117C3CA4F00B4A1F9 /* Icon-72.png */,
 				F527AC4317C3CA4F00B4A1F9 /* Icon-Small-50.png */,
@@ -2184,7 +2197,6 @@
 				F51971C917C4A43500859CFA /* Field.cpp */,
 				F51971CA17C4A43500859CFA /* Field.h */,
 				F527AFD817C3D5B900B4A1F9 /* Constants.h */,
-				F515E92A17CA0EA500A91026 /* Constants.cpp */,
 				F527AFD717C3CE3E00B4A1F9 /* Types.h */,
 			);
 			name = Classes;
@@ -2256,7 +2268,6 @@
 				F51971C717C4A15400859CFA /* chips.plist in Resources */,
 				F51971C817C4A15400859CFA /* chips.png in Resources */,
 				F51971CD17C4A84800859CFA /* selection.png in Resources */,
-				F51971CF17C4AA2100859CFA /* back.png in Resources */,
 				F51971D517C4D56800859CFA /* ct_0.png in Resources */,
 				F51971D617C4D56800859CFA /* ct_1.png in Resources */,
 				F51971D717C4D56800859CFA /* ct_2.png in Resources */,
@@ -2269,6 +2280,12 @@
 				F5179C6217C876B2005155C5 /* b_1.png in Resources */,
 				F5179C6317C876B2005155C5 /* b_2.png in Resources */,
 				F5179C6417C876B2005155C5 /* b_3.png in Resources */,
+				F515E93217CA75C900A91026 /* iphone in Resources */,
+				F5F8B49D17CB2C3700E7E2B8 /* iphonehd in Resources */,
+				F5F8B49F17CB2E3000E7E2B8 /* ipadhd in Resources */,
+				F5F8B4A117CB2E8E00E7E2B8 /* ipad in Resources */,
+				F5F8B4A317CB374500E7E2B8 /* Default-568h@2x.png in Resources */,
+				F5F8B4A517CB3BBC00E7E2B8 /* iphone5 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,7 +2547,6 @@
 				F527AFCE17C3CA5800B4A1F9 /* HelloWorldScene.cpp in Sources */,
 				F527AFD617C3CAFE00B4A1F9 /* Chip.cpp in Sources */,
 				F51971CB17C4A43500859CFA /* Field.cpp in Sources */,
-				F515E92B17CA0EA500A91026 /* Constants.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
