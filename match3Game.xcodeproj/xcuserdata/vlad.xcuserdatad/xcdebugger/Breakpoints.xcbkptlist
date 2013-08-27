@@ -90,9 +90,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "622"
-         endingLineNumber = "622"
-         landmarkName = "Field::update(float dt)"
-         landmarkType = "5">
+         endingLineNumber = "622">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -220,7 +218,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "723"
-         endingLineNumber = "723">
+         endingLineNumber = "723"
+         landmarkName = "Field::moveChips(float dt)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -412,7 +412,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "621"
          endingLineNumber = "621"
-         landmarkName = "Field::update(float dt)"
+         landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
