@@ -10,6 +10,7 @@
 
 Chip::Chip(ChipColor type)
 {
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("chipsSprites.plist");
     
     std::ostringstream oss;
     oss << "ct_" << type << ".png";
@@ -17,13 +18,17 @@ Chip::Chip(ChipColor type)
     
     const char *name = str.c_str();
     
-    _sprite = CCSprite::create(name);
-    this->addChild(_sprite);
     
-    this->setContentSize(_sprite->getContentSize());
+    CCSprite::initWithSpriteFrameName(name);
     
-    _bonusSprite = CCSprite::create();
-    this->addChild(_bonusSprite);
+    
+    //_sprite = CCSprite::create(name);
+    //this->addChild(_sprite);
+    
+    //this->setContentSize(_sprite->getContentSize());
+    
+    //_bonusSprite = CCSprite::create();
+    //this->addChild(_bonusSprite);
     
     setState(CS_Init);
     setType(type);
@@ -56,10 +61,10 @@ void Chip::setType(ChipColor type)
     
     const char *name = str.c_str();
     
-    this->removeChild(_sprite, true);
+    CCSprite::initWithFile(name);
     
-    _sprite = CCSprite::create(name);
-    this->addChild(_sprite);
+    //_sprite = CCSprite::create(name);
+    //this->addChild(_sprite);
 }
 
 void Chip::setState(ChipState state)
@@ -95,6 +100,7 @@ void Chip::setBonus(ChipBonus bonus)
     else
     {
         _bonusSprite = CCSprite::create(name);
+        _bonusSprite->setPosition(ccp(this->getContentSize().width/2, this->getContentSize().height/2));
     }
     this->addChild(_bonusSprite,2);
 }
@@ -140,7 +146,7 @@ void Chip::update(float dt)
     {
         case CS_Init:
         {
-            _sprite->runAction(CCScaleTo::create(0.3, 1));
+            this->runAction(CCScaleTo::create(0.3, 1));
             _state = CS_Normal;
         } break;
             
@@ -157,7 +163,7 @@ void Chip::update(float dt)
             
             CCArray *seqArr = CCArray::create(scaleAction, call, NULL);
             
-            _sprite->runAction(CCSequence::create(seqArr));
+            this->runAction(CCSequence::create(seqArr));
             
         } break;
             

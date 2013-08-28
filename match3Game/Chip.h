@@ -15,10 +15,11 @@
 
 using namespace cocos2d;
 
-class Chip: public cocos2d::CCNode
+class Chip: public cocos2d::CCSprite
 {
 private:
-    CCSprite *_sprite;
+    
+    //CCSprite *_sprite;
     CCSprite *_bonusSprite;
     
     ChipColor _type;

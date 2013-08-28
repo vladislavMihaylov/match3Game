@@ -9,7 +9,7 @@
 #include "Field.h"
 
 #include "Constants.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 
 #include "SimpleAudioEngine.h"
 
@@ -24,6 +24,11 @@ Field::~Field()
 
 Field::Field()
 {
+    _batchNode = CCSpriteBatchNode::create("chipsSprites.png");
+    
+    this->addChild(_batchNode);
+    
+    
     
     _isSwapping = false;
     _isDropping = false;
@@ -119,6 +124,8 @@ Chip* Field::addChip(int col, int row)
     _chips[row * kFieldWidth + col] = chip;
     
     this->addChild(chip);
+    
+    //_batchNode->addChild(chip);
     
     return chip;
     
@@ -544,6 +551,8 @@ void Field::addNewChips() {
 }
 
 void Field::swap(Chip *a, Chip *b) {
+    
+    
     auto swapper = [&](Chip *_1, Chip *_2) {
         CCPoint tmpCoords = _1->getGridCoords();
         
@@ -555,6 +564,7 @@ void Field::swap(Chip *a, Chip *b) {
     };
     
     swapper(a, b);
+
     
     if(getMatchesIfAny().empty())
     {
@@ -565,6 +575,7 @@ void Field::swap(Chip *a, Chip *b) {
     {
         _isSwapping = true;
     }
+    
 }
 
 void Field::touchOnPos(int x, int y)
@@ -601,6 +612,7 @@ void Field::touchOnPos(int x, int y)
         //check if this is the same row and neighbour column
         if(firstCoords.y == secondCoords.y && fabs(firstCoords.x - secondCoords.x) == 1)
         {
+            
             swap(_firstChip, chip);
             _firstChip = nullptr;
         }

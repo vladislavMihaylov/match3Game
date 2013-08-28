@@ -10,7 +10,7 @@
 
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 
 #include "../Platform/CCFileUtils.h"
 

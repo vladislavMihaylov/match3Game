@@ -46,6 +46,8 @@ private:
     float _fieldAreaWidth;
     float _fieldAreaHeight;
     
+    CCSpriteBatchNode *_batchNode;
+    
     
 public:
     Field();

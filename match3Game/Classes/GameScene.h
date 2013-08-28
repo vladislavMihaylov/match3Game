@@ -6,6 +6,7 @@
 using namespace cocos2d;
 
 class Field;
+class GuiLayer;
 
 //class HelloWorld : public cocos2d::CCLayer
 class GameScene : public cocos2d::CCLayer
@@ -21,14 +22,12 @@ public:
     CREATE_FUNC(GameScene);
     
 private:
+    
+    GuiLayer *_gui;
+    
     CCSprite *_back;
     
     Field *_field;
-    
-    CCLabelTTF *_timeLabel;
-    CCLabelTTF *_scoreLabel;
-    
-    CCMenuItemFont *_restartBtn;
     
     int _time;
     int _score;
@@ -37,6 +36,8 @@ private:
     float _screenHeight;
     
 public:
+    
+    void setGui(GuiLayer *gui);
     
     void decreaseTime(float ct);
     void applyPoints(int points);
