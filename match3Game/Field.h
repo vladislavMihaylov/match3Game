@@ -50,10 +50,15 @@ private:
     
     
 public:
-    Field();
-    ~Field();
     
-    static Field* create();
+    CREATE_FUNC(Field);
+    
+    virtual bool init();
+    
+    //Field();
+    //~Field();
+    
+    //static Field* create();
     
     void setUpGrid();
     

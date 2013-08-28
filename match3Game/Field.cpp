@@ -17,18 +17,17 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
 
-Field::~Field()
-{
 
-}
-
-Field::Field()
+bool Field::init()
 {
+    if ( !CCLayer::init() )
+    {
+        return false;
+    }
+    
     _batchNode = CCSpriteBatchNode::create("chipsSprites.png");
     
     this->addChild(_batchNode);
-    
-    
     
     _isSwapping = false;
     _isDropping = false;
@@ -38,8 +37,6 @@ Field::Field()
     _chipSelection = nullptr;
     _firstChip = nullptr;
     _game = nullptr;
-    
-    this->removeAllChildren();
     
     _chipSelection = CCSprite::create("selection.png");
     _chipSelection->setVisible(false);
@@ -55,13 +52,9 @@ Field::Field()
     _fieldAreaHeight = (kFieldHeight * _chipSize.height + (kFieldWidth - 1) * kChipSpacing);
     
     this->scheduleUpdate();
-}
-
-Field* Field::create()
-{
-    Field *field = new Field();
     
-    return field;
+    return true;
+
 }
 
 void Field::setUpGrid()
@@ -530,9 +523,9 @@ void Field::addNewChips() {
                 //row * (kChipSpacing + kChipHeight) + kChipHeight / 2
                 newChip->setPosition(ccp(newChip->getPosition().x, (numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
                 
-                int willBeBonus = random()%10;
+                int willBeBonus = random()%kMaxNumForRandom;
                 
-                if(willBeBonus == 5) // чтобы бонус выпадал довольно таки редко
+                if(willBeBonus == kIsBonus) // чтобы бонус выпадал довольно таки редко
                 {
                     newChip->setBonus(static_cast<ChipBonus>(random() % kNumOfBonusTypes));
                 }

@@ -77,7 +77,7 @@ void GuiLayer::setScoreLabel(int score)
 void GuiLayer::setTimeLabel(int time)
 {
     std::ostringstream oss;
-    oss << "Score: " << time;
+    oss << "Time: " << time;
     std::string str = oss.str();
     
     const char *c_time = str.c_str();

@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "607"
-         endingLineNumber = "607"
+         startingLineNumber = "600"
+         endingLineNumber = "600"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "601"
-         endingLineNumber = "601"
+         startingLineNumber = "594"
+         endingLineNumber = "594"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "623"
-         endingLineNumber = "623"
+         startingLineNumber = "616"
+         endingLineNumber = "616"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "638"
-         endingLineNumber = "638"
+         startingLineNumber = "631"
+         endingLineNumber = "631"
          landmarkName = "Field::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "633"
-         endingLineNumber = "633"
+         startingLineNumber = "626"
+         endingLineNumber = "626"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "628"
-         endingLineNumber = "628"
+         startingLineNumber = "621"
+         endingLineNumber = "621"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "624"
-         endingLineNumber = "624"
+         startingLineNumber = "617"
+         endingLineNumber = "617"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "648"
-         endingLineNumber = "648"
+         startingLineNumber = "641"
+         endingLineNumber = "641"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "688"
-         endingLineNumber = "688"
+         startingLineNumber = "681"
+         endingLineNumber = "681"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "697"
-         endingLineNumber = "697"
+         startingLineNumber = "690"
+         endingLineNumber = "690"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "725"
-         endingLineNumber = "725"
+         startingLineNumber = "718"
+         endingLineNumber = "718"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "677"
-         endingLineNumber = "677"
+         startingLineNumber = "670"
+         endingLineNumber = "670"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,33 +216,33 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "739"
-         endingLineNumber = "739">
+         startingLineNumber = "732"
+         endingLineNumber = "732">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "744"
-         endingLineNumber = "744">
+         startingLineNumber = "737"
+         endingLineNumber = "737">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399315744.75337"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "538"
-         endingLineNumber = "538"
+         startingLineNumber = "531"
+         endingLineNumber = "531"
          landmarkName = "Field::addNewChips()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -251,11 +251,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399315744.75337"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "451"
-         endingLineNumber = "451"
+         startingLineNumber = "444"
+         endingLineNumber = "444"
          landmarkName = "Field::removeMatchesIfAny()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -264,11 +264,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399315744.75337"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "512"
-         endingLineNumber = "512"
+         startingLineNumber = "505"
+         endingLineNumber = "505"
          landmarkName = "Field::displaceChips(Chip *base)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -277,11 +277,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "692"
-         endingLineNumber = "692"
+         startingLineNumber = "685"
+         endingLineNumber = "685"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -290,11 +290,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "600"
-         endingLineNumber = "600"
+         startingLineNumber = "593"
+         endingLineNumber = "593"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -303,11 +303,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "588"
-         endingLineNumber = "588"
+         startingLineNumber = "581"
+         endingLineNumber = "581"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -316,11 +316,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "592"
-         endingLineNumber = "592"
+         startingLineNumber = "585"
+         endingLineNumber = "585"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -329,11 +329,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399315744.75337"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
          landmarkName = "Field::getChipAtXandY(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -342,11 +342,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "670"
-         endingLineNumber = "670"
+         startingLineNumber = "663"
+         endingLineNumber = "663"
          landmarkName = "Field::moveChips(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -368,11 +368,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399315744.75337"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "469"
-         endingLineNumber = "469"
+         startingLineNumber = "462"
+         endingLineNumber = "462"
          landmarkName = "Field::removeMatchesIfAny()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -394,11 +394,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "637"
-         endingLineNumber = "637"
+         startingLineNumber = "630"
+         endingLineNumber = "630"
          landmarkName = "Field::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -498,11 +498,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "606"
-         endingLineNumber = "606"
+         startingLineNumber = "599"
+         endingLineNumber = "599"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -511,11 +511,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "620"
-         endingLineNumber = "620"
+         startingLineNumber = "613"
+         endingLineNumber = "613"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -524,11 +524,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "625"
-         endingLineNumber = "625"
+         startingLineNumber = "618"
+         endingLineNumber = "618"
          landmarkName = "Field::touchOnPos(int x, int y)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -537,11 +537,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399361580.116747"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "556"
-         endingLineNumber = "556"
+         startingLineNumber = "549"
+         endingLineNumber = "549"
          landmarkName = "Field::swap(Chip *a, Chip *b)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -550,11 +550,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399362208.166538"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "566"
-         endingLineNumber = "566"
+         startingLineNumber = "559"
+         endingLineNumber = "559"
          landmarkName = "Field::swap(Chip *a, Chip *b)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -563,11 +563,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399361580.116747"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "558"
-         endingLineNumber = "558"
+         startingLineNumber = "551"
+         endingLineNumber = "551"
          landmarkName = "Field::swap(Chip *a, Chip *b)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -576,11 +576,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "match3Game/Field.cpp"
-         timestampString = "399361580.116747"
+         timestampString = "399373689.027581"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "557"
-         endingLineNumber = "557"
+         startingLineNumber = "550"
+         endingLineNumber = "550"
          landmarkName = "Field::swap(Chip *a, Chip *b)"
          landmarkType = "5">
       </FileBreakpoint>

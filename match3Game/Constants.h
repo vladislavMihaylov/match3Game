@@ -26,6 +26,7 @@
 
 #define kSpeedOfMove        500
 
-
+#define kMaxNumForRandom    10
+#define kIsBonus            5
 
 #endif
