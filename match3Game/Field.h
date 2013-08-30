@@ -33,6 +33,7 @@ private:
     ChipVector _chips;
     
     Chip *_firstChip;
+    Chip *_secondChip;
     
     bool _isSwapping;
     bool _isDropping;

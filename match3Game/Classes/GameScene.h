@@ -29,6 +29,9 @@ private:
     
     Field *_field;
     
+    bool _isGameOver;
+    bool _canTouch;
+    
     int _time;
     int _score;
     
@@ -38,6 +41,12 @@ private:
 public:
     
     void setGui(GuiLayer *gui);
+    
+    void setGameOver(bool isGameOver);
+    void setCanTouch(bool isCanTouch);
+    
+    bool getReadyForInput();
+    bool getIsGameOver();
     
     void decreaseTime(float ct);
     void applyPoints(int points);

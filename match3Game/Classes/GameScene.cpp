@@ -13,8 +13,7 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* GameScene::scene()
-{
+CCScene* GameScene::scene() {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
     
@@ -32,19 +31,19 @@ CCScene* GameScene::scene()
     scene->addChild(layer);
     scene->addChild(gui);
     
-    
-
     // return the scene
     return scene;
 }
 
 // on "init" you need to initialize your instance
-bool GameScene::init()
-{
-    if ( !CCLayer::init() )
-    {
+bool GameScene::init() {
+    
+    if ( !CCLayer::init() ) {
         return false;
     }
+    
+    setGameOver(false);
+    setCanTouch(true);
     
     CCSize size = CCDirector::sharedDirector()->getWinSize();
     _screenWidth = size.width;
@@ -65,23 +64,18 @@ bool GameScene::init()
     _field->setPosition(ccp(0.345 * _screenWidth, 0.96 * _screenHeight));
     this->addChild(_field);
     
-    
-    
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic("md-1.mp3", true);
     
     this->schedule(schedule_selector(GameScene::decreaseTime), 1);
     
-    
     return true;
 }
 
-void GameScene::setGui(GuiLayer *gui)
-{
+void GameScene::setGui(GuiLayer *gui) {
     _gui = gui;
 }
 
-void GameScene::restart()
-{
+void GameScene::restart() {
     this->setTouchEnabled(true);
     
     _gui->setRestartBtnEnable(false);
@@ -92,64 +86,74 @@ void GameScene::restart()
     _gui->setTimeLabel(_time);
     applyPoints(_score);
     
-    _field->setGameOver(false);
+    setGameOver(false);
     
     _field->shuffle();
     
     this->schedule(schedule_selector(GameScene::decreaseTime), 1);
 }
 
-void GameScene::decreaseTime(float ct)
-{
-    if(_time > 0)
-    {
+void GameScene::decreaseTime(float ct) {
+    if(_time > 0) {
         _time--;
         
-        if(_time < 10)
-        {
+        if(_time < 10) {
             SimpleAudioEngine::sharedEngine()->playEffect("clock.wav");
         }
-        
+    
         _gui->setTimeLabel(_time);
-    }
-    else
-    {
+    } else {
         this->unschedule(schedule_selector(GameScene::decreaseTime));
         
         SimpleAudioEngine::sharedEngine()->playEffect("lvlComplete.wav");
         
         this->setTouchEnabled(false);
         
-        _field->setGameOver(true);
+        setGameOver(true);
         
         _gui->setRestartBtnEnable(true);
     }
 }
 
-void GameScene::applyPoints(int points)
-{
+void GameScene::applyPoints(int points) {
     _score += points;
     
     _gui->setScoreLabel(_score);
 }
 
-void GameScene::registerWithTouchDispatcher()
-{
+void GameScene::registerWithTouchDispatcher() {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
 
-bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event)
-{
+void GameScene::setGameOver(bool isGameOver) {
+    _isGameOver = isGameOver;
+}
+
+bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event) {
     CCPoint touchLocation = touch->getLocationInView();
     touchLocation = CCDirector::sharedDirector()->convertToGL(touchLocation);
     touchLocation = this->convertToNodeSpace(touchLocation);
     
-    
-    if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
-       touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight()))
-    {
-        _field->touchOnPos(touchLocation.x, touchLocation.y);
+    if(!_isGameOver) {
+        if(getReadyForInput()) {
+            if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
+               touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight())) {
+                _field->touchOnPos(touchLocation.x, touchLocation.y);
+            }
+        }
     }
     
     return true;
+}
+
+void GameScene::setCanTouch(bool canTouch) {
+    _canTouch = canTouch;
+}
+
+bool GameScene::getReadyForInput() {
+    return _canTouch;
+}
+
+bool GameScene::getIsGameOver() {
+    return _isGameOver;
 }

@@ -22,7 +22,7 @@ private:
     //CCSprite *_sprite;
     CCSprite *_bonusSprite;
     
-    ChipColor _type;
+    ChipColor _color;
     ChipState _state;
     ChipBonus _bonus;
     
@@ -30,19 +30,19 @@ private:
     
 public:
     
-    Chip(ChipColor type);
+    Chip(ChipColor color);
     ~Chip();
     
-    static Chip* create(ChipColor type);
+    static Chip* create(ChipColor color);
     
-    void setType(ChipColor type);
+    void setColor(ChipColor color);
     void setGridCoords(int col, int row);
     void setGridCoords(CCPoint coords);
     void setBonus(ChipBonus bonus);
     
     CCPoint getGridCoords();
     
-    ChipColor getType();
+    ChipColor whichColor();
     ChipState getState();
     ChipBonus getBonus();
     

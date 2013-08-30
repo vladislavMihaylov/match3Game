@@ -22,7 +22,8 @@ enum ChipColor {
     CC_Green,
     CC_Blue,
     CC_Yellow,
-    CC_Pink
+    CC_Pink,
+    CC_Rainbow
 };
 
 enum ChipState {

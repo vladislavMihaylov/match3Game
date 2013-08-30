@@ -13,10 +13,8 @@ using namespace cocos2d;
 #include "GuiLayer.h"
 #include "Constants.h"
 
-bool GuiLayer::init()
-{
-    if ( !CCLayer::init() )
-    {
+bool GuiLayer::init() {
+    if ( !CCLayer::init() ) {
         return false;
     }
     
@@ -48,23 +46,19 @@ bool GuiLayer::init()
     return true;
 }
 
-void GuiLayer::restart()
-{
+void GuiLayer::restart() {
     _gameScene->restart();
 }
 
-void GuiLayer::setGameScene(GameScene *gameScene)
-{
+void GuiLayer::setGameScene(GameScene *gameScene) {
     _gameScene = gameScene;
 }
 
-void GuiLayer::setRestartBtnEnable(bool state)
-{
+void GuiLayer::setRestartBtnEnable(bool state) {
     _restartBtn->setEnabled(state);
 }
 
-void GuiLayer::setScoreLabel(int score)
-{
+void GuiLayer::setScoreLabel(int score) {
     std::ostringstream oss;
     oss << "Score: " << score;
     std::string str = oss.str();
@@ -74,8 +68,7 @@ void GuiLayer::setScoreLabel(int score)
     _scoreLabel->setString(c_score);
 }
 
-void GuiLayer::setTimeLabel(int time)
-{
+void GuiLayer::setTimeLabel(int time) {
     std::ostringstream oss;
     oss << "Time: " << time;
     std::string str = oss.str();
