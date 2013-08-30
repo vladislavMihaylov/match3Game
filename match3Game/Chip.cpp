@@ -9,7 +9,7 @@
 #include "Chip.h"
 
 Chip::Chip(ChipColor color) {
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("chipsSprites.plist");
+    
     
     std::ostringstream oss;
     oss << "ct_" << color << ".png";

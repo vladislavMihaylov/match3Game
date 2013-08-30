@@ -28,7 +28,7 @@ class Field: public cocos2d::CCLayer
 {
 private:
     
-    vector<Chip *> _chipVectorForBonuses;
+    ChipVector _chipVectorForBonuses;
     
     ChipVector _chips;
     
@@ -60,6 +60,8 @@ public:
     //~Field();
     
     //static Field* create();
+    
+    void swapAfterTouch();
     
     void setUpGrid();
     

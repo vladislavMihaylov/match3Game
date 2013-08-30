@@ -13,6 +13,7 @@
 
 #include "SimpleAudioEngine.h"
 
+
 using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
@@ -26,6 +27,8 @@ bool Field::init() {
     _batchNode = CCSpriteBatchNode::create("chipsSprites.png");
     
     this->addChild(_batchNode);
+    
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("chipsSprites.plist");
     
     _isSwapping = false;
     _isDropping = false;
@@ -271,7 +274,6 @@ ChipMatrix Field::getMatchesIfAny() {
             auto match = checkRows(row, col);
             if(match.size() > 2) {
                 resultingMatch.push_back(match);
-                
                 col += (match.size() - 1);
             }
         }
@@ -295,10 +297,10 @@ void Field::setGameDelegate(GameScene *game) {
 }
 
 bool Field::addInBonusesVector(Chip *curChip) {
-    bool isHaveBonus = false;
+    bool isBonus = false;
     
     if(curChip->getType() != BT_None) {
-        isHaveBonus = true;
+        isBonus = true;
         
         if(curChip->getType() == BT_Horizontal) {
             curChip->setType(BT_None);
@@ -335,7 +337,7 @@ bool Field::addInBonusesVector(Chip *curChip) {
     }
 
     
-    return isHaveBonus;
+    return isBonus;
 }
 
 void Field::removeMatchesIfAny() {
@@ -360,19 +362,19 @@ void Field::removeMatchesIfAny() {
         }
     }
     
-    bool isHaveBonus = true;
+    bool isBonus = true;
     
     //matches.push_back(chipVectorForDie);
-    while(isHaveBonus) {
+    while(isBonus) {
         int vectorForBonusesSize = _chipVectorForBonuses.size();
         
-        isHaveBonus = false;
+        isBonus = false;
         
         for(int i = 0; i < vectorForBonusesSize; i++)
         {
             Chip *curChip = _chipVectorForBonuses[i];
             
-            isHaveBonus = addInBonusesVector(curChip);
+            isBonus = addInBonusesVector(curChip);
         }
     }
     
@@ -492,7 +494,7 @@ void Field::swap(Chip *a, Chip *b) {
         _chips[_2->getGridCoords().y * kFieldWidth + _2->getGridCoords().x] = _2;
     };
     
-    swapper(a, b);
+    //swapper(a, b);
 
     
     if(getMatchesIfAny().empty()) {
@@ -503,6 +505,8 @@ void Field::swap(Chip *a, Chip *b) {
     }
     
 }
+
+
 
 void Field::touchOnPos(int x, int y) {
     Chip *chip = getChipAtXandY(x, y);
@@ -532,13 +536,49 @@ void Field::touchOnPos(int x, int y) {
         CCPoint secondCoords = _secondChip->getGridCoords();
         //check if this is the same row and neighbour column
         if(firstCoords.y == secondCoords.y && fabs(firstCoords.x - secondCoords.x) == 1) {
-            swap(_firstChip, _secondChip);
-            _firstChip = nullptr;
-            _secondChip = nullptr;
+            
+            CCPoint tmpCoords = _firstChip->getGridCoords();
+            
+            _firstChip->setGridCoords(_secondChip->getGridCoords());
+            _secondChip->setGridCoords(tmpCoords);
+            
+            _chips[_firstChip->getGridCoords().y * kFieldWidth + _firstChip->getGridCoords().x] = _firstChip;
+            _chips[_secondChip->getGridCoords().y * kFieldWidth + _secondChip->getGridCoords().x] = _secondChip;
+            
+            CCAction *delayAction = CCDelayTime::create(0.2);
+            
+            CCAction *call = CCCallFunc::create(this, callfunc_selector(Field::swapAfterTouch));
+            
+            CCArray *seqArr = CCArray::create(delayAction, call, NULL);
+            
+            this->runAction(CCSequence::create(seqArr));
+            
+            //swap(_firstChip, _secondChip);
+            //_firstChip = nullptr;
+            //_secondChip = nullptr;
         } else if (firstCoords.x == secondCoords.x && fabs(firstCoords.y - secondCoords.y) == 1) {
-            swap(_firstChip, _secondChip);
-            _firstChip = nullptr;
-            _secondChip = nullptr;
+           
+            
+            
+            CCPoint tmpCoords = _firstChip->getGridCoords();
+            
+            _firstChip->setGridCoords(_secondChip->getGridCoords());
+            _secondChip->setGridCoords(tmpCoords);
+            
+            _chips[_firstChip->getGridCoords().y * kFieldWidth + _firstChip->getGridCoords().x] = _firstChip;
+            _chips[_secondChip->getGridCoords().y * kFieldWidth + _secondChip->getGridCoords().x] = _secondChip;
+            
+            CCAction *delayAction = CCDelayTime::create(0.2);
+            
+            CCAction *call = CCCallFunc::create(this, callfunc_selector(Field::swapAfterTouch));
+            
+            CCArray *seqArr = CCArray::create(delayAction, call, NULL);
+            
+            this->runAction(CCSequence::create(seqArr));
+            
+            //swap(_firstChip, _secondChip);
+            //_firstChip = nullptr;
+            //_secondChip = nullptr;
         } else {
             //this is a distant chip, so select it and deselect the previous one
             _firstChip = chip;
@@ -549,6 +589,13 @@ void Field::touchOnPos(int x, int y) {
         }
     }
 
+}
+
+void Field::swapAfterTouch()
+{
+    swap(_firstChip, _secondChip);
+    _firstChip = nullptr;
+    _secondChip = nullptr;
 }
 
 void Field::update(float dt) {
