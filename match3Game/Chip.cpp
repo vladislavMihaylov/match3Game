@@ -21,7 +21,7 @@ Chip::Chip(ChipColor color) {
     
     setState(CS_Init);
     setColor(color);
-    setBonus(BT_None);
+    setType(BT_None);
     
     this->scheduleUpdate();
 }
@@ -61,17 +61,17 @@ void Chip::setGridCoords(CCPoint coords) {
     _gridCoords = coords;
 }
 
-void Chip::setBonus(ChipBonus bonus) {
-    _bonus = bonus;
+void Chip::setType(ChipType type) {
+    _type = type;
     
     std::ostringstream oss;
-    oss << "b_" << bonus << ".png";
+    oss << "b_" << type << ".png";
     std::string str = oss.str();
     
     const char *name = str.c_str();
     
     this->removeChild(_bonusSprite, true);
-    if(bonus == BT_None) {
+    if(type == BT_None) {
         _bonusSprite = CCSprite::create();
     }
     else {
@@ -95,8 +95,8 @@ CCPoint Chip::getGridCoords() {
     return _gridCoords;
 }
 
-ChipBonus Chip::getBonus() {
-    return _bonus;
+ChipType Chip::getType() {
+    return _type;
 }
 
 // other

@@ -297,11 +297,11 @@ void Field::setGameDelegate(GameScene *game) {
 bool Field::addInBonusesVector(Chip *curChip) {
     bool isHaveBonus = false;
     
-    if(curChip->getBonus() != BT_None) {
+    if(curChip->getType() != BT_None) {
         isHaveBonus = true;
         
-        if(curChip->getBonus() == BT_Horizontal) {
-            curChip->setBonus(BT_None);
+        if(curChip->getType() == BT_Horizontal) {
+            curChip->setType(BT_None);
             
             for(int z = 0; z < kFieldWidth; z++) {
                 Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
@@ -309,8 +309,8 @@ bool Field::addInBonusesVector(Chip *curChip) {
                 _chipVectorForBonuses.push_back(chipForAdding);
             }
         }
-        if(curChip->getBonus() == BT_Vertical) {
-            curChip->setBonus(BT_None);
+        if(curChip->getType() == BT_Vertical) {
+            curChip->setType(BT_None);
             
             for(int z = 0; z < kFieldHeight; z++) {
                 Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
@@ -318,8 +318,8 @@ bool Field::addInBonusesVector(Chip *curChip) {
                 _chipVectorForBonuses.push_back(chipForAdding);
             }
         }
-        if(curChip->getBonus() == BT_Cross) {
-            curChip->setBonus(BT_None);
+        if(curChip->getType() == BT_Cross) {
+            curChip->setType(BT_None);
             
             for(int z = 0; z < kFieldWidth; z++) {
                 Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
@@ -458,7 +458,7 @@ void Field::addNewChips() {
                 int willBeBonus = random()%kMaxNumForRandom;
                 
                 if(willBeBonus == kIsBonus) { // чтобы бонус выпадал довольно таки редко 
-                    newChip->setBonus(static_cast<ChipBonus>(random() % kNumOfBonusTypes));
+                    newChip->setType(static_cast<ChipType>(random() % kNumOfBonusTypes));
                 }
                 
                 int willBeRainbow = random()%kMaxNumForRainbow;

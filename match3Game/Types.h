@@ -33,7 +33,7 @@ enum ChipState {
     CS_Dead
 };
 
-enum ChipBonus {
+enum ChipType {
     BT_None,
     BT_Horizontal,
     BT_Vertical,

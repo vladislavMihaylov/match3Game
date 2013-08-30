@@ -24,7 +24,7 @@ private:
     
     ChipColor _color;
     ChipState _state;
-    ChipBonus _bonus;
+    ChipType _type;
     
     CCPoint _gridCoords;
     
@@ -38,13 +38,13 @@ public:
     void setColor(ChipColor color);
     void setGridCoords(int col, int row);
     void setGridCoords(CCPoint coords);
-    void setBonus(ChipBonus bonus);
+    void setType(ChipType type);
     
     CCPoint getGridCoords();
     
     ChipColor whichColor();
     ChipState getState();
-    ChipBonus getBonus();
+    ChipType getType();
     
     void die();
     void kill();

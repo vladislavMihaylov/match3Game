@@ -22,9 +22,9 @@
 #define kFieldWidth         8
 #define kFieldHeight        8
 
-#define kGameSessionTime    600
+#define kGameSessionTime    60
 
-#define kSpeedOfMove        100
+#define kSpeedOfMove        400
 
 #define kMaxNumForRandom    10
 #define kMaxNumForRainbow   30
