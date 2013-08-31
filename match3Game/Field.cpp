@@ -210,8 +210,13 @@ ChipMatrix Field::getMatchesIfAny() {
         ChipVector result;
         result.push_back(chipToCheck);
         
+        int curCol = col;
+        
         while(chipToCheck->whichColor() == CC_Rainbow) {
-            chipToCheck = getChipAt(col + 1, row);
+            
+            curCol += 1;
+            
+            chipToCheck = getChipAt(curCol, row);
             result.push_back(chipToCheck);
         }
         
@@ -242,8 +247,13 @@ ChipMatrix Field::getMatchesIfAny() {
         ChipVector result;
         result.push_back(chipToCheck);
         
+        int curRow = row;
+        
         while(chipToCheck->whichColor() == CC_Rainbow) {
-            chipToCheck = getChipAt(col, row + 1);
+            
+            curRow += 1;
+            
+            chipToCheck = getChipAt(col, curRow);
             result.push_back(chipToCheck);
         }
         
