@@ -8,32 +8,19 @@
 
 #include "Chip.h"
 
-Chip::Chip(ChipColor color) {
+
+bool Chip::init() {
     
-    
-    std::ostringstream oss;
-    oss << "ct_" << color << ".png";
-    std::string str = oss.str();
-    
-    const char *name = str.c_str();
-    
-    CCSprite::initWithSpriteFrameName(name);
+    CCSprite::initWithSpriteFrameName("ct_0.png");
     
     setState(CS_Init);
-    setColor(color);
     setType(BT_None);
     
     this->scheduleUpdate();
-}
-
-Chip::~Chip() {    
-}
-
-Chip* Chip::create(ChipColor color) {
-    Chip *chip = new Chip::Chip(color);
     
-    return chip;
+    return true;
 }
+
 
 // setters
 

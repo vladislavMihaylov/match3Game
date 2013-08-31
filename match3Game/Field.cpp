@@ -24,11 +24,11 @@ bool Field::init() {
         return false;
     }
     
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("chipsSprites.plist");
+    
     _batchNode = CCSpriteBatchNode::create("chipsSprites.png");
     
     this->addChild(_batchNode);
-    
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("chipsSprites.plist");
     
     _isSwapping = false;
     _isDropping = false;
@@ -92,7 +92,7 @@ void Field::setGameOver(bool isGameOver) {
 }
 
 Chip* Field::addChip(int col, int row) {
-    Chip *chip = Chip::create(CC_Red);
+    Chip *chip = Chip::create();//(CC_Red);
     
     chip->setGridCoords(col, row);
     

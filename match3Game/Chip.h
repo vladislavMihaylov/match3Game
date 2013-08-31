@@ -30,10 +30,9 @@ private:
     
 public:
     
-    Chip(ChipColor color);
-    ~Chip();
+    CREATE_FUNC(Chip);
     
-    static Chip* create(ChipColor color);
+    virtual bool init();
     
     void setColor(ChipColor color);
     void setGridCoords(int col, int row);
