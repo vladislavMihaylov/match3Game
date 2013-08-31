@@ -39,7 +39,7 @@ bool Field::init() {
     _firstChip = nullptr;
     _game = nullptr;
     
-    _chipSelection = CCSprite::create("selection.png");
+    _chipSelection = CCSprite::createWithSpriteFrameName("selection.png");  //("selection.png");
     _chipSelection->setVisible(false);
     
     this->addChild(_chipSelection, 1);
@@ -104,9 +104,9 @@ Chip* Field::addChip(int col, int row) {
     
     _chips[row * kFieldWidth + col] = chip;
     
-    this->addChild(chip);
+    //this->addChild(chip);
     
-    //_batchNode->addChild(chip);
+    _batchNode->addChild(chip);
     
     return chip;
     
@@ -115,7 +115,7 @@ Chip* Field::addChip(int col, int row) {
 void Field::clear(bool bruteKill) {
     for(Chip *chip: _chips) {
         if(bruteKill) {
-            this->removeChild(chip, bruteKill);
+            _batchNode->removeChild(chip, bruteKill);
         } else {
             chip->die();
         }
