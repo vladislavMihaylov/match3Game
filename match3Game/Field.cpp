@@ -110,9 +110,9 @@ Chip* Field::addChip(int col, int row) {
     
     _chips[row * kFieldWidth + col] = chip;
     
-    this->addChild(chip);
+    //this->addChild(chip);
     
-    //_batchNode->addChild(chip);
+    _batchNode->addChild(chip);
     
     return chip;
     
@@ -121,8 +121,8 @@ Chip* Field::addChip(int col, int row) {
 void Field::clear(bool bruteKill) {
     for(Chip *chip: _chips) {
         if(bruteKill) {
-            this->removeChild(chip, bruteKill);
-            //_batchNode->removeChild(chip, bruteKill);
+            //this->removeChild(chip, bruteKill);
+            _batchNode->removeChild(chip, bruteKill);
             
             
         } else {

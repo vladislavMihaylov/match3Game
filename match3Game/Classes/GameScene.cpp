@@ -182,33 +182,34 @@ void GameScene::ccTouchMoved(CCTouch *touch, CCEvent *event) {
     
     if(!_isGameOver) {
         if(getReadyForInput()) {
-    if(_touchPosition.x != 0)
-    {
-        if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
-           touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight())) {
-            if(touchLocation.x - _touchPosition.x > kIsLenghtOfSwaip)
+            if(_touchPosition.x != 0)
             {
-                _field->touchOnPos(_touchPosition.x + _field->getSizeOfChip().width, _touchPosition.y);
-                _touchPosition = CCPointZero;
-            }
-            else if(touchLocation.x - _touchPosition.x < -kIsLenghtOfSwaip)
-            {
-                _field->touchOnPos(_touchPosition.x - _field->getSizeOfChip().width, _touchPosition.y);
-                _touchPosition = CCPointZero;
-            }
-            else if(touchLocation.y - _touchPosition.y > kIsLenghtOfSwaip)
-            {
-                _field->touchOnPos(_touchPosition.x, _touchPosition.y  + _field->getSizeOfChip().height);
-                _touchPosition = CCPointZero;
-            }
-            else if(touchLocation.y - _touchPosition.y < -kIsLenghtOfSwaip)
-            {
-                _field->touchOnPos(_touchPosition.x, _touchPosition.y  - _field->getSizeOfChip().height);
-                _touchPosition = CCPointZero;
+                if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
+                   touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight())) {
+                    if(touchLocation.x - _touchPosition.x > kIsLenghtOfSwaip)
+                    {
+                        _field->touchOnPos(_touchPosition.x + _field->getSizeOfChip().width, _touchPosition.y);
+                        _touchPosition = CCPointZero;
+                    }
+                    else if(touchLocation.x - _touchPosition.x < -kIsLenghtOfSwaip)
+                    {
+                        _field->touchOnPos(_touchPosition.x - _field->getSizeOfChip().width, _touchPosition.y);
+                        _touchPosition = CCPointZero;
+                    }
+                    else if(touchLocation.y - _touchPosition.y > kIsLenghtOfSwaip)
+                    {
+                        _field->touchOnPos(_touchPosition.x, _touchPosition.y  + _field->getSizeOfChip().height);
+                        _touchPosition = CCPointZero;
+                    }
+                    else if(touchLocation.y - _touchPosition.y < -kIsLenghtOfSwaip)
+                    {
+                        _field->touchOnPos(_touchPosition.x, _touchPosition.y  - _field->getSizeOfChip().height);
+                        _touchPosition = CCPointZero;
+                    }
+                }
             }
         }
     }
-        }}
 }
 
 void GameScene::setCanTouch(bool canTouch) {

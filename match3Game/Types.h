@@ -29,6 +29,7 @@ enum ChipColor {
 enum ChipState {
     CS_Init,
     CS_Normal,
+    CS_StartedDying,
     CS_Dying,
     CS_Dead
 };

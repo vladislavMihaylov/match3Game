@@ -21,7 +21,6 @@ bool Chip::init() {
     return true;
 }
 
-
 // setters
 
 void Chip::setColor(ChipColor color) {
@@ -33,7 +32,8 @@ void Chip::setColor(ChipColor color) {
     
     const char *name = str.c_str();
     
-    CCSprite::initWithSpriteFrameName(name);
+    //CCSprite::initWithSpriteFrameName(name);
+    CCSprite::setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name));
 }
 
 void Chip::setState(ChipState state) {
@@ -57,15 +57,17 @@ void Chip::setType(ChipType type) {
     
     const char *name = str.c_str();
     
-    this->removeChild(_bonusSprite, true);
+    //this->removeChild(_bonusSprite, true);
     if(type == BT_None) {
-        _bonusSprite = CCSprite::create();
+        //_bonusSprite = CCSprite::create();
     }
     else {
         _bonusSprite = CCSprite::createWithSpriteFrameName(name);
         _bonusSprite->setPosition(ccp(this->getContentSize().width/2, this->getContentSize().height/2));
+        
+        this->addChild(_bonusSprite,2);
     }
-    this->addChild(_bonusSprite,2);
+    
     
 }
 
@@ -90,7 +92,7 @@ ChipType Chip::getType() {
 // other
 
 void Chip::die() {
-    _state = CS_Dying;
+    _state = CS_StartedDying;
 }
 
 void Chip::kill() {
@@ -108,7 +110,10 @@ void Chip::update(float dt) {
         case CS_Normal: {
         } break;
             
-        case CS_Dying: {
+        case CS_StartedDying: {
+            
+            _state = CS_Dying;
+            
             CCAction *scaleAction = CCScaleTo::create(0.05, 0);
             
             CCAction *call = CCCallFunc::create(this, callfunc_selector(Chip::kill));
@@ -116,6 +121,11 @@ void Chip::update(float dt) {
             CCArray *seqArr = CCArray::create(scaleAction, call, NULL);
             
             this->runAction(CCSequence::create(seqArr));
+            
+        } break;
+            
+        case CS_Dying:
+        {
             
         } break;
             
