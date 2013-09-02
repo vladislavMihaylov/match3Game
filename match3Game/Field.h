@@ -39,6 +39,7 @@ private:
     
     bool _isSwapping;
     bool _isDropping;
+    bool _isBadSwap;
     bool _isGameOver;
     
     GameScene *_game;

@@ -165,6 +165,7 @@ bool GameScene::ccTouchBegan(CCTouch *touch, CCEvent *event) {
             if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
                touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight())) {
                 
+                
                 _touchPosition = touchLocation;
                 
                 _field->touchOnPos(touchLocation.x, touchLocation.y);
@@ -186,6 +187,8 @@ void GameScene::ccTouchMoved(CCTouch *touch, CCEvent *event) {
             {
                 if((touchLocation.x > _field->getPosition().x && touchLocation.x < (_field->getPosition().x + _field->getFieldAreaWidth())) &&
                    touchLocation.y < _field->getPosition().y && touchLocation.y > (_field->getPosition().y - _field->getFieldAreaHeight())) {
+                    
+                    
                     if(touchLocation.x - _touchPosition.x > kIsLenghtOfSwaip)
                     {
                         _field->touchOnPos(_touchPosition.x + _field->getSizeOfChip().width, _touchPosition.y);

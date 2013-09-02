@@ -362,6 +362,11 @@ void Field::removeMatchesIfAny() {
         
     int numOfMatches = static_cast<int>(matches.size());
     
+    if(numOfMatches == 0)
+    {
+        _game->setCanTouch(true);
+    }
+    
     for(int i = 0; i < numOfMatches; ++i) {
         int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
         for(int j = 0; j < matches[i].size(); ++j) {
@@ -389,6 +394,7 @@ void Field::removeMatchesIfAny() {
             shuffle();
         }
     }
+    
 }
 
 void Field::destroyChip(Chip *chip)
@@ -628,6 +634,8 @@ void Field::swap(Chip *a, Chip *b) {
         
         _chips[_1->getGridCoords().y * kFieldWidth + _1->getGridCoords().x] = _1;
         _chips[_2->getGridCoords().y * kFieldWidth + _2->getGridCoords().x] = _2;
+        
+        
     };
     
     //swapper(a, b);
@@ -636,11 +644,15 @@ void Field::swap(Chip *a, Chip *b) {
     if(getMatchesIfAny().empty()) {
         //swap(b, a) ?
         swapper(a, b);
+        _isBadSwap = true;
         _firstChip = nullptr;
         _secondChip = nullptr;
         
+        
+        
     } else {
         _isSwapping = true;
+        
     }
     
     
@@ -681,6 +693,8 @@ void Field::touchOnPos(int x, int y) {
     } else {
         //we selected another chip: it is possible it's a neighbour chip
         _chipSelection->setVisible(false);
+        
+        _game->setCanTouch(false);
         
         _secondChip = chip;
         
@@ -754,6 +768,8 @@ void Field::update(float dt) {
     if(!_game->getIsGameOver()) {
         moveChips(dt);
     }
+    
+    
 }
 
 void Field::moveChips(float dt) {
@@ -820,9 +836,8 @@ void Field::moveChips(float dt) {
     if(!_isGameOver) {
         if(moved) {
             _game->setCanTouch(false);
-        } else {
-            _game->setCanTouch(true);
-        }
+            
+        } 
     }
     
     if(_isGameOver) {
@@ -836,5 +851,10 @@ void Field::moveChips(float dt) {
     else if(_isSwapping && !moved) {
         _isSwapping = false;
         removeMatchesIfAny();
+    }
+    else if (_isBadSwap && !moved)
+    {
+        _isBadSwap = false;
+        _game->setCanTouch(true);
     }
 }
