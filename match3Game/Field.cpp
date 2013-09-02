@@ -8,7 +8,7 @@
 
 #include "Field.h"
 
-#include "Constants.h"
+#include "Config.h"
 #include "GameScene.h"
 
 #include "SimpleAudioEngine.h"
@@ -18,6 +18,11 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
 
+extern bool isHorizontalEnable;
+extern bool isVerticalEnable;
+extern bool isCrossEnable;
+extern bool isTimeEnable;
+extern bool isRainbowEnable;
 
 bool Field::init() {
     if ( !CCLayer::init() ) {
@@ -52,11 +57,10 @@ bool Field::init() {
     _fieldAreaHeight = (kFieldHeight * _chipSize.height + (kFieldWidth - 1) * kChipSpacing);
     
     this->scheduleUpdate();
-    
-    
-    
-    return true;
 
+    CCLOG("IsHor: %i IsVer: %i IsCross: %i IsTime: %i", isHorizontalEnable, isVerticalEnable, isCrossEnable, isTimeEnable);
+
+    return true;
 }
 
 void Field::setUpGrid() {
@@ -350,103 +354,13 @@ void Field::setGameDelegate(GameScene *game) {
     _game = game;
 }
 
-bool Field::addInBonusesVector(Chip *curChip) {
-    bool isBonus = false;
-    
-    if(curChip->getType() != BT_None) {
-        isBonus = true;
-        
-        if(curChip->getType() == BT_Horizontal) {
-            curChip->setType(BT_None);
-            
-            for(int z = 0; z < kFieldWidth; z++) {
-                Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
-                
-                //_chipVectorForBonuses.push_back(chipForAdding);
-            }
-        }
-        if(curChip->getType() == BT_Vertical) {
-            curChip->setType(BT_None);
-            
-            for(int z = 0; z < kFieldHeight; z++) {
-                Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
-                
-                //_chipVectorForBonuses.push_back(chipForAdding);
-            }
-        }
-        if(curChip->getType() == BT_Cross) {
-            curChip->setType(BT_None);
-            
-            for(int z = 0; z < kFieldWidth; z++) {
-                Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
-                
-                //_chipVectorForBonuses.push_back(chipForAdding);
-            }
-            for(int z = 0; z < kFieldHeight; z++) {
-                Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
-                
-                //_chipVectorForBonuses.push_back(chipForAdding);
-            }
-        }
-    }
-
-    
-    return isBonus;
-}
-
 void Field::removeMatchesIfAny() {
     auto matches = getMatchesIfAny();
     
     _firstChip = nullptr;
     _secondChip = nullptr;
-    
-    //////////
-    /*
-    int matchSize = matches.size();
-    
-    
-    if(matchSize > 0) {
-        for(int i = 0; i < matchSize; i++) {
-            vector<Chip *> curVector = matches[i];
-            
-            int curVectorSize = curVector.size();
-            
-            for(int k = 0; k < curVectorSize; k++) {
-                Chip *curChip = curVector[k];
-                
-                addInBonusesVector(curChip);
-            }
-        }
-    }
-    
-    bool isBonus = true;
-    
-    //matches.push_back(chipVectorForDie);
-    while(isBonus) {
-        int vectorForBonusesSize = _chipVectorForBonuses.size();
         
-        isBonus = false;
-        
-        for(int i = 0; i < vectorForBonusesSize; i++)
-        {
-            Chip *curChip = _chipVectorForBonuses[i];
-            
-            isBonus = addInBonusesVector(curChip);
-        }
-    }
-    
-    matches.push_back(_chipVectorForBonuses);
-    
-    _chipVectorForBonuses.clear();
-     
-     
-     */
-    ///////////
-    
     int numOfMatches = static_cast<int>(matches.size());
-    
-    //vector<Chip *> chipsForDie;
-
     
     for(int i = 0; i < numOfMatches; ++i) {
         int points = kScorePerChip * ((int)matches[i].size() - 1); //-1 ?
@@ -462,25 +376,10 @@ void Field::removeMatchesIfAny() {
                 
                 SimpleAudioEngine::sharedEngine()->playEffect("chipBreak.wav");
                 
-                
-                
-                //_chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
-                
-                //displaceChips(chip);
-                
-                //would be nice to add this chip to a special list and
-                //apply some basic scale/ fade out effect maybe
-                //and use removeChild(chip, false) instead
-                //this->removeChild(chip);
-                
                 destroyChip(chip);
-                
-                //SoundManager::mngr()->playEffect("chipBreak.wav");
             }
         }
     }
-    
-    //destroyExtraChips(extraChips); will remove!
     
     addNewChips();
     
@@ -654,14 +553,59 @@ void Field::addNewChips() {
                 
                 int willBeBonus = random()%kMaxNumForRandom;
                 
-                if(willBeBonus == kIsBonus) { // чтобы бонус выпадал довольно таки редко 
-                    newChip->setType(static_cast<ChipType>(random() % kNumOfBonusTypes));
+                if(willBeBonus == kIsBonus) { // чтобы бонус выпадал довольно таки редко
+                    
+                    ChipType bonusNum = static_cast<ChipType>(random() % kNumOfBonusTypes);
+                    
+                    switch (bonusNum)
+                    {
+                        case BT_None:
+                        {
+                            newChip->setType(bonusNum);
+                        } break;
+                            
+                        case BT_Horizontal:
+                        {
+                            if(isHorizontalEnable)
+                            {
+                                newChip->setType(bonusNum);
+                            }
+                        }
+                        case BT_Vertical:
+                        {
+                            if(isVerticalEnable)
+                            {
+                                newChip->setType(bonusNum);
+                            }
+                        }
+                        case BT_Cross:
+                        {
+                            if(isCrossEnable)
+                            {
+                                newChip->setType(bonusNum);
+                            }
+                        }
+                        case BT_Time:
+                        {
+                            if(isTimeEnable)
+                            {
+                                newChip->setType(bonusNum);
+                            }
+                        }
+                            
+                        default:
+                            break;
+                    }
+                    
                 }
                 
                 int willBeRainbow = random()%kMaxNumForRainbow;
                 
                 if(willBeRainbow == kIsBonus) {
-                    newChip->setColor(CC_Rainbow);
+                    if(isRainbowEnable)
+                    {
+                        newChip->setColor(CC_Rainbow);
+                    }
                 }
                 
                 newChip->setVisible(false);

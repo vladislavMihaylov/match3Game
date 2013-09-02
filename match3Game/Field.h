@@ -58,11 +58,6 @@ public:
     
     virtual bool init();
     
-    //Field();
-    //~Field();
-    
-    //static Field* create();
-    
     void swapAfterTouch();
     
     void setUpGrid();
@@ -72,8 +67,6 @@ public:
     
     float getFieldAreaWidth();
     float getFieldAreaHeight();
-    
-    bool addInBonusesVector(Chip *chip);
     
     Chip* addChip(int col, int row);
     Chip* getChipAt(int col, int row);

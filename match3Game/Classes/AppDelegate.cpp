@@ -14,7 +14,7 @@
 
 #include "../Platform/CCFileUtils.h"
 
-#include "Constants.h"
+#include "Config.h"
 
 //#include <vector>
 

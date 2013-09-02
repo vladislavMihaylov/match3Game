@@ -11,7 +11,7 @@
 using namespace cocos2d;
 
 #include "GuiLayer.h"
-#include "Constants.h"
+#include "Config.h"
 
 bool GuiLayer::init() {
     if ( !CCLayer::init() ) {

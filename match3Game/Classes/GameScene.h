@@ -40,7 +40,10 @@ private:
     
     CCPoint _touchPosition;
     
+    
 public:
+    
+    void setUpBonuses();
     
     void applyBonusTime();
     

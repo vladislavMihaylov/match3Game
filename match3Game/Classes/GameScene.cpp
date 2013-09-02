@@ -5,13 +5,19 @@
 #include "Field.h"
 #include "Types.h"
 
-#include "Constants.h"
+#include "Config.h"
 #include "SimpleAudioEngine.h"
 
 #include "GuiLayer.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+
+bool isHorizontalEnable = false;
+bool isVerticalEnable = false;
+bool isCrossEnable = false;
+bool isTimeEnable = false;
+bool isRainbowEnable = false;
 
 CCScene* GameScene::scene() {
     // 'scene' is an autorelease object
@@ -41,6 +47,7 @@ bool GameScene::init() {
     if ( !CCLayer::init() ) {
         return false;
     }
+    setUpBonuses();
     
     setGameOver(false);
     setCanTouch(true);
@@ -68,11 +75,24 @@ bool GameScene::init() {
     
     this->schedule(schedule_selector(GameScene::decreaseTime), 1);
     
+    
+    
     return true;
 }
 
 void GameScene::setGui(GuiLayer *gui) {
     _gui = gui;
+}
+
+void GameScene::setUpBonuses()
+{
+    // если тру - знач бонус работает
+    
+    isHorizontalEnable = true;
+    isVerticalEnable = true;
+    isCrossEnable = true;
+    isTimeEnable = true;
+    isRainbowEnable = true;
 }
 
 void GameScene::restart() {

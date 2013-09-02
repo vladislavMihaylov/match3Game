@@ -894,7 +894,7 @@
 		F527AFD417C3CAFE00B4A1F9 /* Chip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chip.cpp; sourceTree = "<group>"; };
 		F527AFD517C3CAFE00B4A1F9 /* Chip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chip.h; sourceTree = "<group>"; };
 		F527AFD717C3CE3E00B4A1F9 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
-		F527AFD817C3D5B900B4A1F9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		F527AFD817C3D5B900B4A1F9 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		F5F8B49C17CB2C3700E7E2B8 /* iphonehd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphonehd; sourceTree = "<group>"; };
 		F5F8B49E17CB2E3000E7E2B8 /* ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipadhd; sourceTree = "<group>"; };
 		F5F8B4A017CB2E8E00E7E2B8 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipad; sourceTree = "<group>"; };
@@ -2146,7 +2146,7 @@
 				F527AFD517C3CAFE00B4A1F9 /* Chip.h */,
 				F51971C917C4A43500859CFA /* Field.cpp */,
 				F51971CA17C4A43500859CFA /* Field.h */,
-				F527AFD817C3D5B900B4A1F9 /* Constants.h */,
+				F527AFD817C3D5B900B4A1F9 /* Config.h */,
 				F527AFD717C3CE3E00B4A1F9 /* Types.h */,
 			);
 			name = Classes;
