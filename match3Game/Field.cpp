@@ -243,7 +243,7 @@ ChipMatrix Field::getMatchesIfAny() {
                 if(currentChip != chipToCheck) {
                     if((currentChip && chipToCheck->whichColor() == currentChip->whichColor()) || currentChip->whichColor() == CC_Rainbow) {
                         result.push_back(currentChip);
-                        CCLOG("current chip added to result");
+                        
                     } else {
                         return result;
                     }
@@ -362,7 +362,7 @@ bool Field::addInBonusesVector(Chip *curChip) {
             for(int z = 0; z < kFieldWidth; z++) {
                 Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
                 
-                _chipVectorForBonuses.push_back(chipForAdding);
+                //_chipVectorForBonuses.push_back(chipForAdding);
             }
         }
         if(curChip->getType() == BT_Vertical) {
@@ -371,7 +371,7 @@ bool Field::addInBonusesVector(Chip *curChip) {
             for(int z = 0; z < kFieldHeight; z++) {
                 Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
                 
-                _chipVectorForBonuses.push_back(chipForAdding);
+                //_chipVectorForBonuses.push_back(chipForAdding);
             }
         }
         if(curChip->getType() == BT_Cross) {
@@ -380,12 +380,12 @@ bool Field::addInBonusesVector(Chip *curChip) {
             for(int z = 0; z < kFieldWidth; z++) {
                 Chip *chipForAdding = getChipAt(z, curChip->getGridCoords().y);
                 
-                _chipVectorForBonuses.push_back(chipForAdding);
+                //_chipVectorForBonuses.push_back(chipForAdding);
             }
             for(int z = 0; z < kFieldHeight; z++) {
                 Chip *chipForAdding = getChipAt(curChip->getGridCoords().x, z);
                 
-                _chipVectorForBonuses.push_back(chipForAdding);
+                //_chipVectorForBonuses.push_back(chipForAdding);
             }
         }
     }
@@ -401,7 +401,7 @@ void Field::removeMatchesIfAny() {
     _secondChip = nullptr;
     
     //////////
-    
+    /*
     int matchSize = matches.size();
     
     
@@ -438,6 +438,9 @@ void Field::removeMatchesIfAny() {
     matches.push_back(_chipVectorForBonuses);
     
     _chipVectorForBonuses.clear();
+     
+     
+     */
     ///////////
     
     int numOfMatches = static_cast<int>(matches.size());
@@ -461,19 +464,23 @@ void Field::removeMatchesIfAny() {
                 
                 
                 
-                _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
+                //_chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
                 
-                displaceChips(chip);
+                //displaceChips(chip);
+                
                 //would be nice to add this chip to a special list and
                 //apply some basic scale/ fade out effect maybe
                 //and use removeChild(chip, false) instead
                 //this->removeChild(chip);
-                chip->die();
+                
+                destroyChip(chip);
                 
                 //SoundManager::mngr()->playEffect("chipBreak.wav");
             }
         }
     }
+    
+    //destroyExtraChips(extraChips); will remove!
     
     addNewChips();
     
@@ -483,6 +490,140 @@ void Field::removeMatchesIfAny() {
             shuffle();
         }
     }
+}
+
+void Field::destroyChip(Chip *chip)
+{
+    
+    switch (chip->getType())
+    {
+        case BT_Time:
+        {
+            chip->setType(BT_None);
+            _game->applyBonusTime();
+            
+            _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
+            displaceChips(chip);
+            chip->die();
+            
+        } break;
+        case BT_Horizontal:
+        {
+            chip->setType(BT_None);
+            
+            for(int z = 0; z < kFieldWidth; z++) {
+                Chip *chipForAdding = getChipAt(z, chip->getGridCoords().y);
+                
+                if(chipForAdding != nullptr)
+                {
+                    if(chipForAdding->getType() != BT_None)
+                    {
+                        destroyChip(chipForAdding);
+                    }
+                    else
+                    {
+                        _chips[chipForAdding->getGridCoords().y * kFieldWidth + chipForAdding->getGridCoords().x] = nullptr;
+                        displaceChips(chipForAdding);
+                        chipForAdding->die();
+                    }
+                }
+            }
+            
+            
+        } break;
+            
+        case BT_Vertical:
+        {
+            
+            chip->setType(BT_None);
+            
+            for(int z = 0; z < kFieldHeight; z++) {
+                Chip *chipForAdding = getChipAt(chip->getGridCoords().x, z);
+                
+                if(chipForAdding != nullptr)
+                {
+                    if(chipForAdding->getType() != BT_None)
+                    {
+                        destroyChip(chipForAdding);
+                    }
+                    else
+                    {
+                        _chips[chipForAdding->getGridCoords().y * kFieldWidth + chipForAdding->getGridCoords().x] = nullptr;
+                        displaceChips(chipForAdding);
+                        chipForAdding->die();
+                    }
+                }
+            }
+            
+            
+        } break;
+            
+        case BT_Cross:
+        {
+            chip->setType(BT_None);
+            
+            for(int z = 0; z < kFieldWidth; z++) {
+                Chip *chipForAdding = getChipAt(z, chip->getGridCoords().y);
+                
+                if(chipForAdding != nullptr)
+                {
+                    if(chipForAdding->getType() != BT_None)
+                    {
+                        destroyChip(chipForAdding);
+                    }
+                    else
+                    {
+                        _chips[chipForAdding->getGridCoords().y * kFieldWidth + chipForAdding->getGridCoords().x] = nullptr;
+                        displaceChips(chipForAdding);
+                        chipForAdding->die();
+                    }
+                }
+            }
+            for(int z = 0; z < kFieldHeight; z++) {
+                Chip *chipForAdding = getChipAt(chip->getGridCoords().x, z);
+                
+                if(chipForAdding != nullptr)
+                {
+                    if(chipForAdding->getType() != BT_None)
+                    {
+                        destroyChip(chipForAdding);
+                    }
+                    else
+                    {
+                        _chips[chipForAdding->getGridCoords().y * kFieldWidth + chipForAdding->getGridCoords().x] = nullptr;
+                        displaceChips(chipForAdding);
+                        chipForAdding->die();
+                    }
+                }
+            }
+            
+        } break;
+       
+            
+        default:
+            _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
+            displaceChips(chip);
+            chip->die();
+            break;
+    }
+    
+    
+}
+
+void Field::destroyExtraChips(ChipVector extraChips)
+{
+    int countOfChips = extraChips.size();
+    
+    for(int i = 0; i < countOfChips; i++)
+    {
+        Chip *chip = extraChips[i];
+        
+        _chips[chip->getGridCoords().y * kFieldWidth + chip->getGridCoords().x] = nullptr;
+        displaceChips(chip);
+        chip->die();
+    }
+    
+    extraChips.clear();
 }
 
 void Field::displaceChips(Chip *base)

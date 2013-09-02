@@ -28,7 +28,9 @@ class Field: public cocos2d::CCLayer
 {
 private:
     
-    ChipVector _chipVectorForBonuses;
+    //ChipVector _chipVectorForBonuses;
+    
+    ChipVector extraChips;
     
     ChipVector _chips;
     
@@ -88,6 +90,10 @@ public:
     void touchOnPos(int x, int y);
     
     CCSize getSizeOfChip();
+    
+    void destroyChip(Chip *chip);
+    
+    void destroyExtraChips(ChipVector extraChips);
     
 private:
     

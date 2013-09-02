@@ -120,7 +120,7 @@ void Chip::update(float dt) {
         } break;
             
         case CS_Dead: {
-            this->removeFromParentAndCleanup(true);
+            this->removeFromParent();
         } break;
             
         default:

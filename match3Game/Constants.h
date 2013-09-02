@@ -10,7 +10,7 @@
 #define match3Test_Constants_h
 
 #define kNumOfChipTypes     5
-#define kNumOfBonusTypes    4
+#define kNumOfBonusTypes    5
 
 #define kFieldBasePoint     ccp(350, 720)
 #define kChipSpacing        2
@@ -31,5 +31,7 @@
 #define kIsBonus            0
 
 #define kIsLenghtOfSwaip    20
+
+#define kBonusTime          10
 
 #endif

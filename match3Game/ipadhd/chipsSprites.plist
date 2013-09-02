@@ -43,6 +43,19 @@
                 <key>sourceSize</key>
                 <string>{64,64}</string>
             </dict>
+            <key>b_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{192,60},{56,52}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,6},{56,52}}</string>
+                <key>sourceSize</key>
+                <string>{64,64}</string>
+            </dict>
             <key>ct_0.png</key>
             <dict>
                 <key>frame</key>
@@ -144,7 +157,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2af39c5fb8ef17cc0383146a72705faa:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:347b8d365d90b121be6e4f415b8cd3ee:1/1$</string>
             <key>textureFileName</key>
             <string>chipsSprites.png</string>
         </dict>

@@ -121,6 +121,12 @@ void GameScene::applyPoints(int points) {
     _gui->setScoreLabel(_score);
 }
 
+void GameScene::applyBonusTime()
+{
+    _time += kBonusTime;
+    _gui->setTimeLabel(_time);
+}
+
 void GameScene::registerWithTouchDispatcher() {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
@@ -196,3 +202,4 @@ bool GameScene::getReadyForInput() {
 bool GameScene::getIsGameOver() {
     return _isGameOver;
 }
+

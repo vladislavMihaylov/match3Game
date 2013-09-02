@@ -42,6 +42,8 @@ private:
     
 public:
     
+    void applyBonusTime();
+    
     void setGui(GuiLayer *gui);
     
     void setGameOver(bool isGameOver);

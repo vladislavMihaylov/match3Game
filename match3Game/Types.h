@@ -37,7 +37,8 @@ enum ChipType {
     BT_None,
     BT_Horizontal,
     BT_Vertical,
-    BT_Cross
+    BT_Cross,
+    BT_Time
 };
 
 inline float cut(float num, float min, float max)
