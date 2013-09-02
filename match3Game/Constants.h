@@ -30,4 +30,6 @@
 #define kMaxNumForRainbow   30
 #define kIsBonus            0
 
+#define kIsLenghtOfSwaip    20
+
 #endif

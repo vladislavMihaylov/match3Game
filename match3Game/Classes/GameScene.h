@@ -38,6 +38,8 @@ private:
     float _screenWidth;
     float _screenHeight;
     
+    CCPoint _touchPosition;
+    
 public:
     
     void setGui(GuiLayer *gui);
@@ -55,6 +57,7 @@ public:
     
     void registerWithTouchDispatcher();
     bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+    void ccTouchMoved(CCTouch *touch, CCEvent *event);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

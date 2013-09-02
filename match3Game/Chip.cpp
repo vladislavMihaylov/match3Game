@@ -33,7 +33,7 @@ void Chip::setColor(ChipColor color) {
     
     const char *name = str.c_str();
     
-    CCSprite::initWithFile(name);
+    CCSprite::initWithSpriteFrameName(name);
 }
 
 void Chip::setState(ChipState state) {
@@ -62,10 +62,11 @@ void Chip::setType(ChipType type) {
         _bonusSprite = CCSprite::create();
     }
     else {
-        _bonusSprite = CCSprite::create(name);
+        _bonusSprite = CCSprite::createWithSpriteFrameName(name);
         _bonusSprite->setPosition(ccp(this->getContentSize().width/2, this->getContentSize().height/2));
     }
     this->addChild(_bonusSprite,2);
+    
 }
 
 // getters
@@ -119,7 +120,7 @@ void Chip::update(float dt) {
         } break;
             
         case CS_Dead: {
-            this->removeFromParent();
+            this->removeFromParentAndCleanup(true);
         } break;
             
         default:

@@ -87,6 +87,8 @@ public:
     
     void touchOnPos(int x, int y);
     
+    CCSize getSizeOfChip();
+    
 private:
     
     ChipMatrix getMatchesIfAny();

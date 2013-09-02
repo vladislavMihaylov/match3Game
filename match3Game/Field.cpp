@@ -39,7 +39,7 @@ bool Field::init() {
     _firstChip = nullptr;
     _game = nullptr;
     
-    _chipSelection = CCSprite::create("selection.png");
+    _chipSelection = CCSprite::createWithSpriteFrameName("selection.png");
     _chipSelection->setVisible(false);
     
     this->addChild(_chipSelection, 1);
@@ -52,6 +52,8 @@ bool Field::init() {
     _fieldAreaHeight = (kFieldHeight * _chipSize.height + (kFieldWidth - 1) * kChipSpacing);
     
     this->scheduleUpdate();
+    
+    
     
     return true;
 
@@ -116,6 +118,9 @@ void Field::clear(bool bruteKill) {
     for(Chip *chip: _chips) {
         if(bruteKill) {
             this->removeChild(chip, bruteKill);
+            //_batchNode->removeChild(chip, bruteKill);
+            
+            
         } else {
             chip->die();
         }
@@ -210,15 +215,20 @@ ChipMatrix Field::getMatchesIfAny() {
         ChipVector result;
         result.push_back(chipToCheck);
         
-        int curCol = col;
+        if(_firstChip && (_firstChip->whichColor() == CC_Rainbow || _secondChip->whichColor() == CC_Rainbow))
+        {
         
-        while(chipToCheck->whichColor() == CC_Rainbow) {
+            int curCol = col;
             
-            curCol += 1;
-            
-            chipToCheck = getChipAt(curCol, row);
-            result.push_back(chipToCheck);
+            while(chipToCheck->whichColor() == CC_Rainbow) {
+                
+                curCol += 1;
+                
+                chipToCheck = getChipAt(curCol, row);
+                result.push_back(chipToCheck);
+            }
         }
+        
         
         if(chipToCheck == nullptr) {
             return result;
@@ -228,8 +238,20 @@ ChipMatrix Field::getMatchesIfAny() {
         for(int i = 1; col + i < kFieldWidth; ++i) {
             Chip *currentChip = getChipAt(col + i, row);
             
-            if(currentChip != chipToCheck) {
-                if((currentChip && chipToCheck->whichColor() == currentChip->whichColor()) || currentChip->whichColor() == CC_Rainbow) {
+            if(_firstChip && (_firstChip->whichColor() == CC_Rainbow || _secondChip->whichColor() == CC_Rainbow))
+            {
+                if(currentChip != chipToCheck) {
+                    if((currentChip && chipToCheck->whichColor() == currentChip->whichColor()) || currentChip->whichColor() == CC_Rainbow) {
+                        result.push_back(currentChip);
+                        CCLOG("current chip added to result");
+                    } else {
+                        return result;
+                    }
+                }
+            }
+            else
+            {
+                if((currentChip && chipToCheck->whichColor() == currentChip->whichColor())) {
                     result.push_back(currentChip);
                 } else {
                     return result;
@@ -237,9 +259,12 @@ ChipMatrix Field::getMatchesIfAny() {
             }
             
         }
-            
+        
         return result;
     };
+    
+    
+    //////----/////
     
     auto checkColumns = [&](int row, int col) -> ChipVector {
         Chip *chipToCheck = getChipAt(col, row);
@@ -247,15 +272,19 @@ ChipMatrix Field::getMatchesIfAny() {
         ChipVector result;
         result.push_back(chipToCheck);
         
-        int curRow = row;
-        
-        while(chipToCheck->whichColor() == CC_Rainbow) {
-            
-            curRow += 1;
-            
-            chipToCheck = getChipAt(col, curRow);
-            result.push_back(chipToCheck);
+        if(_firstChip && (_firstChip->whichColor() == CC_Rainbow || _secondChip->whichColor() == CC_Rainbow))
+        {
+            int curRow = row;
+                
+            while(chipToCheck->whichColor() == CC_Rainbow) {
+                
+                curRow += 1;
+                
+                chipToCheck = getChipAt(col, curRow);
+                result.push_back(chipToCheck);
+            }
         }
+        
         
         if(chipToCheck == nullptr) {
             return result;
@@ -263,9 +292,20 @@ ChipMatrix Field::getMatchesIfAny() {
         
         for(int i = 1; row + i < kFieldHeight; ++i) {
             Chip *currentChip = getChipAt(col, row + i);
-            
-            if(currentChip != chipToCheck) {
-                if((currentChip && chipToCheck->whichColor() == currentChip->whichColor()) || currentChip->whichColor() == CC_Rainbow) {
+
+            if(_firstChip && (_firstChip->whichColor() == CC_Rainbow || _secondChip->whichColor() == CC_Rainbow))
+            {
+                if(currentChip != chipToCheck) {
+                    if((currentChip && chipToCheck->whichColor() == currentChip->whichColor()) || currentChip->whichColor() == CC_Rainbow) {
+                        result.push_back(currentChip);
+                    } else {
+                        return result;
+                    }
+                }
+            }
+            else
+            {
+                if((currentChip && chipToCheck->whichColor() == currentChip->whichColor())) {
                     result.push_back(currentChip);
                 } else {
                     return result;
@@ -275,6 +315,10 @@ ChipMatrix Field::getMatchesIfAny() {
         
         return result;
     };
+    
+    
+    
+    ////////------////////
     
     for(int row = 0; row < kFieldHeight; ++row) {
         //assume our match is invalid in case it consists of less than 3 elements
@@ -352,6 +396,9 @@ bool Field::addInBonusesVector(Chip *curChip) {
 
 void Field::removeMatchesIfAny() {
     auto matches = getMatchesIfAny();
+    
+    _firstChip = nullptr;
+    _secondChip = nullptr;
     
     //////////
     
@@ -449,9 +496,7 @@ void Field::displaceChips(Chip *base)
             
             currentChip->setGridCoords(currentChip->getGridCoords().x, currentChip->getGridCoords().y + 1);
             
-            // -> newww currentChip->setGridCoords(currentChip->getGridCoords().x, currentChip->getGridCoords().y + 1);
             _chips[(row + 1) * kFieldWidth + baseCol] = currentChip;
-            // -> newww_chips[(row - 1) * kFieldWidth + baseCol] = currentChip;
             _chips[row * kFieldWidth + baseCol] = nullptr;
         }
     }
@@ -464,7 +509,6 @@ void Field::addNewChips() {
             if(getChipAt(col, row) == nullptr) {
                 
                 Chip *newChip = addChip(col, row);
-                //row * (kChipSpacing + kChipHeight) + kChipHeight / 2
                 newChip->setPosition(ccp(newChip->getPosition().x, (numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
                 
                 int willBeBonus = random()%kMaxNumForRandom;
@@ -482,9 +526,6 @@ void Field::addNewChips() {
                 newChip->setVisible(false);
                 newChip->setScale(0);
                 newChip->runAction(CCScaleTo::create(0.2, 1));
-                // -> newww newChip->setPosition(ccp(newChip->getPosition().x, -(numOfMissingChips++ * (kChipSpacing + kChipHeight) + kChipHeight / 2)));
-                
-                //CCLOG("newChip.position: %f, %f", newChip->getPosition().x, newChip->getPosition().y);
                 
                 _isDropping = true;
             }
@@ -510,10 +551,26 @@ void Field::swap(Chip *a, Chip *b) {
     if(getMatchesIfAny().empty()) {
         //swap(b, a) ?
         swapper(a, b);
+        _firstChip = nullptr;
+        _secondChip = nullptr;
+        
     } else {
         _isSwapping = true;
     }
     
+    
+}
+
+CCSize Field::getSizeOfChip()
+{
+    CCSize chipSize;
+    
+    if(_firstChip)
+    {
+        chipSize = _firstChip->getContentSize();
+    }
+    
+    return chipSize;
 }
 
 
@@ -604,8 +661,8 @@ void Field::touchOnPos(int x, int y) {
 void Field::swapAfterTouch()
 {
     swap(_firstChip, _secondChip);
-    _firstChip = nullptr;
-    _secondChip = nullptr;
+    
+    
 }
 
 void Field::update(float dt) {
