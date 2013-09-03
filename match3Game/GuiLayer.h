@@ -24,6 +24,8 @@ private:
     CCLabelTTF *_scoreLabel;
     
     CCMenuItemFont *_restartBtn;
+    CCMenuItemFont *_twitterBtn;
+    CCMenuItemFont *_facebookBtn;
     
 public:
     
@@ -39,6 +41,9 @@ public:
     void setTimeLabel(int time);
     
     void restart();
+    
+    void postToTwitter(CCObject* pSender);
+    void postToFacebook(CCObject* pSender);
 };
 
 #endif /* defined(__match3Game__GuiLayer__) */

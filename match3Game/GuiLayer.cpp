@@ -13,6 +13,8 @@ using namespace cocos2d;
 #include "GuiLayer.h"
 #include "Config.h"
 
+#include "NDKHelper.h"
+
 bool GuiLayer::init() {
     if ( !CCLayer::init() ) {
         return false;
@@ -36,7 +38,17 @@ bool GuiLayer::init() {
     _restartBtn->setAnchorPoint(ccp(0, 0.5));
     _restartBtn->setEnabled(false);
     
-    CCMenu *menu = CCMenu::create(_restartBtn, NULL);
+    _twitterBtn = CCMenuItemFont::create("Twitter!", this, menu_selector(GuiLayer::postToTwitter));
+    _twitterBtn->setPosition(ccp(0.08 * size.width, 0.55 * size.height));
+    _twitterBtn->setAnchorPoint(ccp(0, 0.5));
+    _twitterBtn->setEnabled(false);
+    
+    _facebookBtn = CCMenuItemFont::create("Facebook!", this, menu_selector(GuiLayer::postToFacebook));
+    _facebookBtn->setPosition(ccp(0.08 * size.width, 0.45 * size.height));
+    _facebookBtn->setAnchorPoint(ccp(0, 0.5));
+    _facebookBtn->setEnabled(false);
+    
+    CCMenu *menu = CCMenu::create(_restartBtn, _twitterBtn, _facebookBtn, NULL);
     menu->setPosition(ccp(0, 0));
     
     this->addChild(menu, 2);
@@ -44,6 +56,18 @@ bool GuiLayer::init() {
     CCLOG("Created GUI");
     
     return true;
+}
+
+void GuiLayer::postToTwitter(CCObject* pSender)
+{
+    CCLOG("twitter in cpp");
+    SendMessageWithParams(string("postTwitter"), NULL);
+}
+
+void GuiLayer::postToFacebook(CCObject* pSender)
+{
+    CCLOG("Facebook in cpp");
+    SendMessageWithParams(string("postFacebook"), NULL);
 }
 
 void GuiLayer::restart() {
@@ -56,6 +80,8 @@ void GuiLayer::setGameScene(GameScene *gameScene) {
 
 void GuiLayer::setRestartBtnEnable(bool state) {
     _restartBtn->setEnabled(state);
+    _twitterBtn->setEnabled(state);
+    _facebookBtn->setEnabled(state);
 }
 
 void GuiLayer::setScoreLabel(int score) {

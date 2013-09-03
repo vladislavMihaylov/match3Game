@@ -854,7 +854,7 @@ void Field::moveChips(float dt) {
     }
     else if (_isBadSwap && !moved)
     {
-        _isBadSwap = false;
+        _isBadSwap = false; 
         _game->setCanTouch(true);
     }
 }

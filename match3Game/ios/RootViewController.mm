@@ -7,19 +7,84 @@
 //
 
 #import "RootViewController.h"
-
+#include "IOSNDKHelper.h"
+#import <Twitter/Twitter.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation RootViewController
 
-/*
+//*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
+        [IOSNDKHelper SetNDKReciever:self];
     }
     return self;
 }
-*/
+//*/
+
+- (void) postTwitter:(NSObject *)prms
+{
+    NSLog(@"post to twitter");
+    
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+                        
+            [controller dismissViewControllerAnimated:YES completion:Nil];
+        };
+        controller.completionHandler =myBlock;
+        
+        [controller setInitialText:@"Is the best match-3 game ever! "];
+        
+        [self presentViewController:controller animated:YES completion:Nil];
+        
+    }
+}
+
+- (void) postFacebook:(NSObject *)prms
+{
+     NSLog(@"post to facebook");
+    
+//    DEFacebookComposeViewControllerCompletionHandler __block completionHandler = ^(DEFacebookComposeViewControllerResult result) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        switch (result) {
+//            case DEFacebookComposeViewControllerResultCancelled:
+//                NSLog(@"Facebook Result: Cancelled");
+//                break;
+//            case DEFacebookComposeViewControllerResultDone:
+//                NSLog(@"Facebook Result: Sent");
+//                break;
+//        }
+//    };
+//    DEFacebookComposeViewController * compose = [[DEFacebookComposeViewController alloc] init];
+//    [compose setInitialText:self.shareText];
+//    [compose addImage:self.shareImage];
+//    [compose addURL:self.shareURL];
+//    [compose setCompletionHandler:completionHandler];
+//    [self presentViewController:compose animated:YES completion:^{}];
+    
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+            
+            [controller dismissViewControllerAnimated:YES completion:Nil];
+        };
+        controller.completionHandler =myBlock;
+        
+        [controller setInitialText:@"Is the best match-3 game ever! "];
+        
+        [self presentViewController:controller animated:YES completion:Nil];
+        
+    }
+    
+}
+
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.

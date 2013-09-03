@@ -7,7 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5031AB117D5FEF30052D7BA /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5031AAF17D5FEF30052D7BA /* MainMenu.cpp */; };
+		F5031ABB17D6119E0052D7BA /* IOSNDKHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5031AB517D6119E0052D7BA /* IOSNDKHelper.mm */; };
+		F5031ABC17D6119E0052D7BA /* NDKCallbackNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5031AB717D6119E0052D7BA /* NDKCallbackNode.cpp */; };
+		F5031ABD17D6119E0052D7BA /* NDKHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5031AB917D6119E0052D7BA /* NDKHelper.cpp */; };
+		F5031AD217D612400052D7BA /* dump.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031AC217D612400052D7BA /* dump.c */; };
+		F5031AD317D612400052D7BA /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031AC317D612400052D7BA /* error.c */; };
+		F5031AD417D612400052D7BA /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031AC417D612400052D7BA /* hashtable.c */; };
+		F5031AD517D612400052D7BA /* load.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031AC917D612400052D7BA /* load.c */; };
+		F5031AD617D612400052D7BA /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031ACA17D612400052D7BA /* memory.c */; };
+		F5031AD717D612400052D7BA /* pack_unpack.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031ACB17D612400052D7BA /* pack_unpack.c */; };
+		F5031AD817D612400052D7BA /* strbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031ACC17D612400052D7BA /* strbuffer.c */; };
+		F5031AD917D612400052D7BA /* strconv.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031ACE17D612400052D7BA /* strconv.c */; };
+		F5031ADA17D612400052D7BA /* utf.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031ACF17D612400052D7BA /* utf.c */; };
+		F5031ADB17D612400052D7BA /* value.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031AD117D612400052D7BA /* value.c */; };
 		F504664417CDC99900EDE1AB /* GuiLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F504664217CDC99900EDE1AB /* GuiLayer.cpp */; };
+		F507886617D5B68F0002CA44 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886517D5B68F0002CA44 /* AdSupport.framework */; };
+		F507886817D5B69D0002CA44 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886717D5B69D0002CA44 /* Accounts.framework */; };
+		F507886A17D5B6A80002CA44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886917D5B6A80002CA44 /* libsqlite3.dylib */; };
+		F507886C17D5B6B50002CA44 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886B17D5B6B50002CA44 /* Security.framework */; };
+		F507886E17D5B6BE0002CA44 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886D17D5B6BE0002CA44 /* Social.framework */; };
+		F507887517D5B80B0002CA44 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507887417D5B80B0002CA44 /* Twitter.framework */; };
+		F507887717D5B8140002CA44 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507887617D5B8140002CA44 /* SystemConfiguration.framework */; };
+		F5078A8F17D5C0DB0002CA44 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5078A8E17D5C0DB0002CA44 /* MessageUI.framework */; };
 		F515E93217CA75C900A91026 /* iphone in Resources */ = {isa = PBXBuildFile; fileRef = F515E93117CA75C900A91026 /* iphone */; };
 		F5179C5B17C86DC8005155C5 /* md-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5717C86DC8005155C5 /* md-1.mp3 */; };
 		F5179C5C17C86DC8005155C5 /* clock.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5817C86DC8005155C5 /* clock.wav */; };
@@ -294,8 +316,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F5031AAF17D5FEF30052D7BA /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
+		F5031AB017D5FEF30052D7BA /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		F5031AB317D6119E0052D7BA /* IOSNDKHelper-C-Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IOSNDKHelper-C-Interface.h"; sourceTree = "<group>"; };
+		F5031AB417D6119E0052D7BA /* IOSNDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSNDKHelper.h; sourceTree = "<group>"; };
+		F5031AB517D6119E0052D7BA /* IOSNDKHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IOSNDKHelper.mm; sourceTree = "<group>"; };
+		F5031AB717D6119E0052D7BA /* NDKCallbackNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NDKCallbackNode.cpp; sourceTree = "<group>"; };
+		F5031AB817D6119E0052D7BA /* NDKCallbackNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDKCallbackNode.h; sourceTree = "<group>"; };
+		F5031AB917D6119E0052D7BA /* NDKHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NDKHelper.cpp; sourceTree = "<group>"; };
+		F5031ABA17D6119E0052D7BA /* NDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDKHelper.h; sourceTree = "<group>"; };
+		F5031AC217D612400052D7BA /* dump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dump.c; sourceTree = "<group>"; };
+		F5031AC317D612400052D7BA /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
+		F5031AC417D612400052D7BA /* hashtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashtable.c; sourceTree = "<group>"; };
+		F5031AC517D612400052D7BA /* hashtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashtable.h; sourceTree = "<group>"; };
+		F5031AC617D612400052D7BA /* jansson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jansson.h; sourceTree = "<group>"; };
+		F5031AC717D612400052D7BA /* jansson_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jansson_config.h; sourceTree = "<group>"; };
+		F5031AC817D612400052D7BA /* jansson_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jansson_private.h; sourceTree = "<group>"; };
+		F5031AC917D612400052D7BA /* load.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = load.c; sourceTree = "<group>"; };
+		F5031ACA17D612400052D7BA /* memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memory.c; sourceTree = "<group>"; };
+		F5031ACB17D612400052D7BA /* pack_unpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pack_unpack.c; sourceTree = "<group>"; };
+		F5031ACC17D612400052D7BA /* strbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strbuffer.c; sourceTree = "<group>"; };
+		F5031ACD17D612400052D7BA /* strbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strbuffer.h; sourceTree = "<group>"; };
+		F5031ACE17D612400052D7BA /* strconv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strconv.c; sourceTree = "<group>"; };
+		F5031ACF17D612400052D7BA /* utf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf.c; sourceTree = "<group>"; };
+		F5031AD017D612400052D7BA /* utf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf.h; sourceTree = "<group>"; };
+		F5031AD117D612400052D7BA /* value.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = value.c; sourceTree = "<group>"; };
 		F504664217CDC99900EDE1AB /* GuiLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiLayer.cpp; sourceTree = "<group>"; };
 		F504664317CDC99900EDE1AB /* GuiLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiLayer.h; sourceTree = "<group>"; };
+		F507886517D5B68F0002CA44 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		F507886717D5B69D0002CA44 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		F507886917D5B6A80002CA44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F507886B17D5B6B50002CA44 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F507886D17D5B6BE0002CA44 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		F507887417D5B80B0002CA44 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		F507887617D5B8140002CA44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F5078A8E17D5C0DB0002CA44 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F515E93117CA75C900A91026 /* iphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphone; sourceTree = "<group>"; };
 		F5179C5717C86DC8005155C5 /* md-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "md-1.mp3"; sourceTree = "<group>"; };
 		F5179C5817C86DC8005155C5 /* clock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clock.wav; sourceTree = "<group>"; };
@@ -907,6 +962,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5078A8F17D5C0DB0002CA44 /* MessageUI.framework in Frameworks */,
+				F507887717D5B8140002CA44 /* SystemConfiguration.framework in Frameworks */,
+				F507887517D5B80B0002CA44 /* Twitter.framework in Frameworks */,
+				F507886E17D5B6BE0002CA44 /* Social.framework in Frameworks */,
+				F507886C17D5B6B50002CA44 /* Security.framework in Frameworks */,
+				F507886A17D5B6A80002CA44 /* libsqlite3.dylib in Frameworks */,
+				F507886817D5B69D0002CA44 /* Accounts.framework in Frameworks */,
+				F507886617D5B68F0002CA44 /* AdSupport.framework in Frameworks */,
 				F527AC2817C3CA4F00B4A1F9 /* QuartzCore.framework in Frameworks */,
 				F527AC2A17C3CA4F00B4A1F9 /* OpenGLES.framework in Frameworks */,
 				F527AC2C17C3CA4F00B4A1F9 /* OpenAL.framework in Frameworks */,
@@ -924,6 +987,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F5031AB217D6119E0052D7BA /* IOSNDKHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F5031AB317D6119E0052D7BA /* IOSNDKHelper-C-Interface.h */,
+				F5031AB417D6119E0052D7BA /* IOSNDKHelper.h */,
+				F5031AB517D6119E0052D7BA /* IOSNDKHelper.mm */,
+			);
+			path = IOSNDKHelper;
+			sourceTree = "<group>";
+		};
+		F5031AB617D6119E0052D7BA /* NDKHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F5031AB717D6119E0052D7BA /* NDKCallbackNode.cpp */,
+				F5031AB817D6119E0052D7BA /* NDKCallbackNode.h */,
+				F5031AB917D6119E0052D7BA /* NDKHelper.cpp */,
+				F5031ABA17D6119E0052D7BA /* NDKHelper.h */,
+			);
+			path = NDKHelper;
+			sourceTree = "<group>";
+		};
+		F5031AC117D612400052D7BA /* jansson */ = {
+			isa = PBXGroup;
+			children = (
+				F5031AC217D612400052D7BA /* dump.c */,
+				F5031AC317D612400052D7BA /* error.c */,
+				F5031AC417D612400052D7BA /* hashtable.c */,
+				F5031AC517D612400052D7BA /* hashtable.h */,
+				F5031AC617D612400052D7BA /* jansson.h */,
+				F5031AC717D612400052D7BA /* jansson_config.h */,
+				F5031AC817D612400052D7BA /* jansson_private.h */,
+				F5031AC917D612400052D7BA /* load.c */,
+				F5031ACA17D612400052D7BA /* memory.c */,
+				F5031ACB17D612400052D7BA /* pack_unpack.c */,
+				F5031ACC17D612400052D7BA /* strbuffer.c */,
+				F5031ACD17D612400052D7BA /* strbuffer.h */,
+				F5031ACE17D612400052D7BA /* strconv.c */,
+				F5031ACF17D612400052D7BA /* utf.c */,
+				F5031AD017D612400052D7BA /* utf.h */,
+				F5031AD117D612400052D7BA /* value.c */,
+			);
+			path = jansson;
+			sourceTree = "<group>";
+		};
 		F5179C6717C876CF005155C5 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,6 +1045,14 @@
 		F527AC1B17C3CA4F00B4A1F9 = {
 			isa = PBXGroup;
 			children = (
+				F5078A8E17D5C0DB0002CA44 /* MessageUI.framework */,
+				F507887617D5B8140002CA44 /* SystemConfiguration.framework */,
+				F507887417D5B80B0002CA44 /* Twitter.framework */,
+				F507886D17D5B6BE0002CA44 /* Social.framework */,
+				F507886B17D5B6B50002CA44 /* Security.framework */,
+				F507886917D5B6A80002CA44 /* libsqlite3.dylib */,
+				F507886717D5B69D0002CA44 /* Accounts.framework */,
+				F507886517D5B68F0002CA44 /* AdSupport.framework */,
 				F527AC3717C3CA4F00B4A1F9 /* match3Game */,
 				F527AC2617C3CA4F00B4A1F9 /* Frameworks */,
 				F527AC2517C3CA4F00B4A1F9 /* Products */,
@@ -2136,6 +2251,9 @@
 		F527AFC817C3CA5800B4A1F9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F5031AC117D612400052D7BA /* jansson */,
+				F5031AB217D6119E0052D7BA /* IOSNDKHelper */,
+				F5031AB617D6119E0052D7BA /* NDKHelper */,
 				F527AFC917C3CA5800B4A1F9 /* AppDelegate.h */,
 				F527AFCA17C3CA5800B4A1F9 /* AppDelegate.cpp */,
 				F527AFCC17C3CA5800B4A1F9 /* GameScene.h */,
@@ -2148,6 +2266,8 @@
 				F51971CA17C4A43500859CFA /* Field.h */,
 				F527AFD817C3D5B900B4A1F9 /* Config.h */,
 				F527AFD717C3CE3E00B4A1F9 /* Types.h */,
+				F5031AAF17D5FEF30052D7BA /* MainMenu.cpp */,
+				F5031AB017D5FEF30052D7BA /* MainMenu.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2186,6 +2306,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				he,
 			);
 			mainGroup = F527AC1B17C3CA4F00B4A1F9;
 			productRefGroup = F527AC2517C3CA4F00B4A1F9 /* Products */;
@@ -2485,6 +2606,20 @@
 				F527AFD617C3CAFE00B4A1F9 /* Chip.cpp in Sources */,
 				F51971CB17C4A43500859CFA /* Field.cpp in Sources */,
 				F504664417CDC99900EDE1AB /* GuiLayer.cpp in Sources */,
+				F5031AB117D5FEF30052D7BA /* MainMenu.cpp in Sources */,
+				F5031ABB17D6119E0052D7BA /* IOSNDKHelper.mm in Sources */,
+				F5031ABC17D6119E0052D7BA /* NDKCallbackNode.cpp in Sources */,
+				F5031ABD17D6119E0052D7BA /* NDKHelper.cpp in Sources */,
+				F5031AD217D612400052D7BA /* dump.c in Sources */,
+				F5031AD317D612400052D7BA /* error.c in Sources */,
+				F5031AD417D612400052D7BA /* hashtable.c in Sources */,
+				F5031AD517D612400052D7BA /* load.c in Sources */,
+				F5031AD617D612400052D7BA /* memory.c in Sources */,
+				F5031AD717D612400052D7BA /* pack_unpack.c in Sources */,
+				F5031AD817D612400052D7BA /* strbuffer.c in Sources */,
+				F5031AD917D612400052D7BA /* strconv.c in Sources */,
+				F5031ADA17D612400052D7BA /* utf.c in Sources */,
+				F5031ADB17D612400052D7BA /* value.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2564,16 +2699,24 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					/Users/vlad/Documents/FacebookSDK,
+					"\"$(SRCROOT)/match3Game\"",
+					"\"$(SRCROOT)/Facebook_SDK\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = match3Game/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = match3Game/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/match3Game/libs/cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/match3Game/libs/libwebsockets/ios/lib\"",
+					"\"$(SRCROOT)/match3Game\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -2592,15 +2735,23 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					/Users/vlad/Documents/FacebookSDK,
+					"\"$(SRCROOT)/match3Game\"",
+					"\"$(SRCROOT)/Facebook_SDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = match3Game/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = match3Game/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/match3Game/libs/cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/match3Game/libs/libwebsockets/ios/lib\"",
+					"\"$(SRCROOT)/match3Game\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
