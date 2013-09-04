@@ -22,7 +22,7 @@
 #define kFieldWidth         8
 #define kFieldHeight        8
 
-#define kGameSessionTime    60
+#define kGameSessionTime    10
 
 #define kSpeedOfMove        400
 

@@ -28,8 +28,6 @@ class Field: public cocos2d::CCLayer
 {
 private:
     
-    //ChipVector _chipVectorForBonuses;
-    
     ChipVector extraChips;
     
     ChipVector _chips;

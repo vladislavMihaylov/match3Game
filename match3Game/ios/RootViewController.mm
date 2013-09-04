@@ -8,8 +8,8 @@
 
 #import "RootViewController.h"
 #include "IOSNDKHelper.h"
-#import <Twitter/Twitter.h>
-#import <FacebookSDK/FacebookSDK.h>
+
+#import <Social/Social.h>
 
 @implementation RootViewController
 
@@ -48,24 +48,6 @@
 - (void) postFacebook:(NSObject *)prms
 {
      NSLog(@"post to facebook");
-    
-//    DEFacebookComposeViewControllerCompletionHandler __block completionHandler = ^(DEFacebookComposeViewControllerResult result) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        switch (result) {
-//            case DEFacebookComposeViewControllerResultCancelled:
-//                NSLog(@"Facebook Result: Cancelled");
-//                break;
-//            case DEFacebookComposeViewControllerResultDone:
-//                NSLog(@"Facebook Result: Sent");
-//                break;
-//        }
-//    };
-//    DEFacebookComposeViewController * compose = [[DEFacebookComposeViewController alloc] init];
-//    [compose setInitialText:self.shareText];
-//    [compose addImage:self.shareImage];
-//    [compose addURL:self.shareURL];
-//    [compose setCompletionHandler:completionHandler];
-//    [self presentViewController:compose animated:YES completion:^{}];
     
     if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         

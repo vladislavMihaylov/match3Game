@@ -16,10 +16,9 @@
 
 #include "Config.h"
 
-//#include <vector>
 
 USING_NS_CC;
-//using namespace std;
+
 using namespace CocosDenshion;
 
 typedef struct tagResource
@@ -96,10 +95,6 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     CCFileUtils::sharedFileUtils()->setSearchPaths(searchPath);
     
-    //float scale = pDirector->getContentScaleFactor();
-    
-    //CCLOG("scale: %f", scale);
-    
     ////////
 
     // turn on display FPS
@@ -114,11 +109,6 @@ bool AppDelegate::applicationDidFinishLaunching()
     // run
     pDirector->runWithScene(pScene);
     
-    
-    
-    
-    
-
     return true;
 }
 

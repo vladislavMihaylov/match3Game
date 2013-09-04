@@ -22,14 +22,7 @@
 		F5031ADA17D612400052D7BA /* utf.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031ACF17D612400052D7BA /* utf.c */; };
 		F5031ADB17D612400052D7BA /* value.c in Sources */ = {isa = PBXBuildFile; fileRef = F5031AD117D612400052D7BA /* value.c */; };
 		F504664417CDC99900EDE1AB /* GuiLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F504664217CDC99900EDE1AB /* GuiLayer.cpp */; };
-		F507886617D5B68F0002CA44 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886517D5B68F0002CA44 /* AdSupport.framework */; };
-		F507886817D5B69D0002CA44 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886717D5B69D0002CA44 /* Accounts.framework */; };
-		F507886A17D5B6A80002CA44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886917D5B6A80002CA44 /* libsqlite3.dylib */; };
-		F507886C17D5B6B50002CA44 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886B17D5B6B50002CA44 /* Security.framework */; };
 		F507886E17D5B6BE0002CA44 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507886D17D5B6BE0002CA44 /* Social.framework */; };
-		F507887517D5B80B0002CA44 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507887417D5B80B0002CA44 /* Twitter.framework */; };
-		F507887717D5B8140002CA44 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507887617D5B8140002CA44 /* SystemConfiguration.framework */; };
-		F5078A8F17D5C0DB0002CA44 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5078A8E17D5C0DB0002CA44 /* MessageUI.framework */; };
 		F515E93217CA75C900A91026 /* iphone in Resources */ = {isa = PBXBuildFile; fileRef = F515E93117CA75C900A91026 /* iphone */; };
 		F5179C5B17C86DC8005155C5 /* md-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5717C86DC8005155C5 /* md-1.mp3 */; };
 		F5179C5C17C86DC8005155C5 /* clock.wav in Resources */ = {isa = PBXBuildFile; fileRef = F5179C5817C86DC8005155C5 /* clock.wav */; };
@@ -343,14 +336,7 @@
 		F5031AD117D612400052D7BA /* value.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = value.c; sourceTree = "<group>"; };
 		F504664217CDC99900EDE1AB /* GuiLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiLayer.cpp; sourceTree = "<group>"; };
 		F504664317CDC99900EDE1AB /* GuiLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiLayer.h; sourceTree = "<group>"; };
-		F507886517D5B68F0002CA44 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		F507886717D5B69D0002CA44 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		F507886917D5B6A80002CA44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		F507886B17D5B6B50002CA44 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F507886D17D5B6BE0002CA44 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		F507887417D5B80B0002CA44 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		F507887617D5B8140002CA44 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		F5078A8E17D5C0DB0002CA44 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F515E93117CA75C900A91026 /* iphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphone; sourceTree = "<group>"; };
 		F5179C5717C86DC8005155C5 /* md-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "md-1.mp3"; sourceTree = "<group>"; };
 		F5179C5817C86DC8005155C5 /* clock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clock.wav; sourceTree = "<group>"; };
@@ -962,14 +948,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5078A8F17D5C0DB0002CA44 /* MessageUI.framework in Frameworks */,
-				F507887717D5B8140002CA44 /* SystemConfiguration.framework in Frameworks */,
-				F507887517D5B80B0002CA44 /* Twitter.framework in Frameworks */,
 				F507886E17D5B6BE0002CA44 /* Social.framework in Frameworks */,
-				F507886C17D5B6B50002CA44 /* Security.framework in Frameworks */,
-				F507886A17D5B6A80002CA44 /* libsqlite3.dylib in Frameworks */,
-				F507886817D5B69D0002CA44 /* Accounts.framework in Frameworks */,
-				F507886617D5B68F0002CA44 /* AdSupport.framework in Frameworks */,
 				F527AC2817C3CA4F00B4A1F9 /* QuartzCore.framework in Frameworks */,
 				F527AC2A17C3CA4F00B4A1F9 /* OpenGLES.framework in Frameworks */,
 				F527AC2C17C3CA4F00B4A1F9 /* OpenAL.framework in Frameworks */,
@@ -1045,14 +1024,7 @@
 		F527AC1B17C3CA4F00B4A1F9 = {
 			isa = PBXGroup;
 			children = (
-				F5078A8E17D5C0DB0002CA44 /* MessageUI.framework */,
-				F507887617D5B8140002CA44 /* SystemConfiguration.framework */,
-				F507887417D5B80B0002CA44 /* Twitter.framework */,
 				F507886D17D5B6BE0002CA44 /* Social.framework */,
-				F507886B17D5B6B50002CA44 /* Security.framework */,
-				F507886917D5B6A80002CA44 /* libsqlite3.dylib */,
-				F507886717D5B69D0002CA44 /* Accounts.framework */,
-				F507886517D5B68F0002CA44 /* AdSupport.framework */,
 				F527AC3717C3CA4F00B4A1F9 /* match3Game */,
 				F527AC2617C3CA4F00B4A1F9 /* Frameworks */,
 				F527AC2517C3CA4F00B4A1F9 /* Products */,

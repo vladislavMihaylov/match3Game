@@ -121,7 +121,6 @@ Chip* Field::addChip(int col, int row) {
 void Field::clear(bool bruteKill) {
     for(Chip *chip: _chips) {
         if(bruteKill) {
-            //this->removeChild(chip, bruteKill);
             _batchNode->removeChild(chip, bruteKill);
             
             
@@ -319,7 +318,6 @@ ChipMatrix Field::getMatchesIfAny() {
         
         return result;
     };
-    
     
     
     ////////------////////
@@ -637,8 +635,6 @@ void Field::swap(Chip *a, Chip *b) {
         
         
     };
-    
-    //swapper(a, b);
 
     
     if(getMatchesIfAny().empty()) {
@@ -648,14 +644,10 @@ void Field::swap(Chip *a, Chip *b) {
         _firstChip = nullptr;
         _secondChip = nullptr;
         
-        
-        
     } else {
         _isSwapping = true;
         
     }
-    
-    
 }
 
 CCSize Field::getSizeOfChip()
@@ -719,9 +711,6 @@ void Field::touchOnPos(int x, int y) {
             
             this->runAction(CCSequence::create(seqArr));
             
-            //swap(_firstChip, _secondChip);
-            //_firstChip = nullptr;
-            //_secondChip = nullptr;
         } else if (firstCoords.x == secondCoords.x && fabs(firstCoords.y - secondCoords.y) == 1) {
            
             
@@ -742,9 +731,6 @@ void Field::touchOnPos(int x, int y) {
             
             this->runAction(CCSequence::create(seqArr));
             
-            //swap(_firstChip, _secondChip);
-            //_firstChip = nullptr;
-            //_secondChip = nullptr;
         } else {
             //this is a distant chip, so select it and deselect the previous one
             _firstChip = chip;
@@ -786,7 +772,6 @@ void Field::moveChips(float dt) {
                 CCPoint requiredPos = ccp(chip->getGridCoords().x * (kChipSpacing + _chipSize.width) + _chipSize.width / 2,
                                          chip->getGridCoords().y * -(kChipSpacing + _chipSize.height) - _chipSize.height / 2);
                 
-                //CCLOG("CurrentPos.y: %f", chip->getPosition().y);
                 
                 if(chip->getPosition().y < 0) {
                     chip->setVisible(true);
@@ -796,10 +781,6 @@ void Field::moveChips(float dt) {
                 if(currentPos.y < requiredPos.y) {
                     //use gravity instead of constant speed
                     CCPoint pos = ccp(chip->getPosition().x, cut(chip->getPosition().y + kSpeedOfMove * dt, currentPos.y, requiredPos.y));
-                    
-                    //CCLOG("currentPos: %f, %f requiredPos: %f, %f", currentPos.x, currentPos.y, requiredPos.x, requiredPos.y);
-                    
-                    //chip->setRotation(20);
                     
                     chip->setPosition(pos); //apply speed here
                     

@@ -57,9 +57,7 @@ void Chip::setType(ChipType type) {
     
     const char *name = str.c_str();
     
-    //this->removeChild(_bonusSprite, true);
     if(type == BT_None) {
-        //_bonusSprite = CCSprite::create();
     }
     else {
         _bonusSprite = CCSprite::createWithSpriteFrameName(name);
